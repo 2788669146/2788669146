@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>微信俄罗斯方块</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            touch-action: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #game-container {
+            position: relative;
+            margin-top: 20px;
+        }
+        #game-board {
+            border: 2px solid #333;
+            background: #fff;
+        }
+        #score-panel {
+            margin: 10px;
+            font-size: 20px;
+        }
+        .controls {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .control-btn {
+            padding: 12px;
+            font-size: 18px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body>
+    <div id="score-panel">得分: 0</div>
+    <div id="game-container">
+        <canvas id="game-board"></canvas>
+    </div>
+    <div class="controls">
+        <button class="control-btn" id="left">←</button>
+        <button class="control-btn" id="rotate">↻</button>
+        <button class="control-btn" id="right">→</button>
+        <button class="control-btn" id="down">↓</button>
+    </div>
+
+<script>
+const BLOCK_SIZE = 30;
+const COLS = 10;
+const ROWS = 20;
+const SHAPES = [
+    [[1,1,1,1]], // I
+    [[1,1,1],[0,1,0]], // T
+    [[1,1,1],[1,0,0]], // L
+    [[1,1,1],[0,0,1]], // J
+    [[1,1],[1,1]], // O
+    [[1,1,0],[0,1,1]], // S
+    [[0,1,1],[1,1,0]]  // Z
+];
+const COLORS = ['#00f0f0', '#f0a000', '#0000f0', '#f0f000', 
+               '#a0a0f0', '#00f000', '#f00000'];
+
+let canvas = document.getElementById('game-board');
+let ctx = canvas.getContext('2d');
+let score = 0;
+let board = [];
+let currentPiece = null;
+let currentX = 0;
+let currentY = 0;
+
+function init() {
+    canvas.width = COLS * BLOCK_SIZE;
+    canvas.height = ROWS * BLOCK_SIZE;
+    
+    // 初始化游戏板
+    for(let y = 0; y < ROWS; y++) {
+        board[y] = [];
+        for(let x = 0; x < COLS; x++) {
+            board[y][x] = 0;
+        }
+    }
+    
+    newPiece();
+    update();
+    setInterval(gameStep, 1000);
+}
+
+function newPiece() {
+    let type = Math.floor(Math.random() * SHAPES.length);
+    currentPiece = SHAPES[type];
+    currentX = Math.floor(COLS/2) - Math.floor(currentPiece[0].length/2);
+    currentY = 0;
+}
+
+function drawBlock(x, y, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x*BLOCK_SIZE, y*BLOCK_SIZE, 
+                BLOCK_SIZE-1, BLOCK_SIZE-1);
+}
+
+function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 绘制游戏板
+    for(let y = 0; y < ROWS; y++) {
+        for(let x = 0; x < COLS; x++) {
+            if(board[y][x]) {
+                drawBlock(x, y, COLORS[board[y][x]-1]);
+            }
+        }
+    }
+    
+    // 绘制当前方块
+    if(currentPiece) {
+        for(let y = 0; y < currentPiece.length; y++) {
+            for(let x = 0; x < currentPiece[y].length; x++) {
+                if(currentPiece[y][x]) {
+                    drawBlock(currentX + x, currentY + y, COLORS[SHAPES.indexOf(currentPiece)]);
+                }
+            }
+        }
+    }
+}
+
+function canMove(piece, newX, newY) {
+    for(let y = 0; y < piece.length; y++) {
+        for(let x = 0; x < piece[y].length; x++) {
+            if(piece[y][x]) {
+                let nextX = newX + x;
+                let nextY = newY + y;
+                if(nextX < 0 || nextX >= COLS || 
+                   nextY >= ROWS ||
+                   (nextY >= 0 && board[nextY][nextX])) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+function mergePiece() {
+    for(let y = 0; y < currentPiece.length; y++) {
+        for(let x = 0; x < currentPiece[y].length; x++) {
+            if(currentPiece[y][x]) {
+                board[currentY + y][currentX + x] = SHAPES.indexOf(currentPiece) + 1;
+            }
+        }
+    }
+}
+
+function checkLines() {
+    let linesCleared = 0;
+    for(let y = ROWS-1; y >= 0; y--) {
+        if(board[y].every(cell => cell !== 0)) {
+            board.splice(y, 1);
+            board.unshift(Array(COLS).fill(0));
+            linesCleared++;
+            y++;
+        }
+    }
+    if(linesCleared > 0) {
+        score += linesCleared * 100;
+        document.getElementById('score-panel').textContent = `得分: ${score}`;
+    }
+}
+
+function gameStep() {
+    if(canMove(currentPiece, currentX, currentY + 1)) {
+        currentY++;
+    } else {
+        mergePiece();
+        checkLines();
+        newPiece();
+        if(!canMove(currentPiece, currentX, currentY)) {
+            alert('游戏结束！得分: ' + score);
+            location.reload();
+        }
+    }
+    update();
+}
+
+// 触摸控制
+let touchStartX = 0;
+let touchStartY = 0;
+
+document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+});
+
+document.addEventListener('touchmove', e => {
+    e.preventDefault();
+}, { passive: false });
+
+document.addEventListener('touchend', e => {
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    const deltaY = e.changedTouches[0].clientY - touchStartY;
+    
+    if(Math.abs(deltaX) > Math.abs(deltaY)) {
+        if(deltaX > 30) moveRight();
+        else if(deltaX < -30) moveLeft();
+    } else {
+        if(deltaY > 30) drop();
+        else if(deltaY < -30) rotate();
+    }
+});
+
+// 按钮控制
+document.getElementById('left').addEventListener('touchstart', moveLeft);
+document.getElementById('right').addEventListener('touchstart', moveRight);
+document.getElementById('rotate').addEventListener('touchstart', rotate);
+document.getElementById('down').addEventListener('touchstart', drop);
+
+function moveLeft() {
+    if(canMove(currentPiece, currentX - 1, currentY)) {
+        currentX--;
+        update();
+    }
+}
+
+function moveRight() {
+    if(canMove(currentPiece, currentX + 1, currentY)) {
+        currentX++;
+        update();
+    }
+}
+
+function rotate() {
+    let newPiece = currentPiece[0].map((_, i) =>
+        currentPiece.map(row => row[i]).reverse()
+    );
+    if(canMove(newPiece, currentX, currentY)) {
+        currentPiece = newPiece;
+        update();
+    }
+}
+
+function drop() {
+    while(canMove(currentPiece, currentX, currentY + 1)) {
+        currentY++;
+    }
+    gameStep();
+}
+
+init();
+</script>
+</body>
+</html>
