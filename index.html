@@ -1,136 +1,204 @@
 <!DOCTYPE html>
-<html lang="cn">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QQ绑定查询</title>
-
-    <!-- 引入Bootstrap的CSS文件 -->
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-
-    <!-- 引入Font Awesome的CSS文件 -->
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+    <title>Optimized Mario</title>
     <style>
-        .text-center-vh {
+        /* 使用CSS变量提升渲染性能 */
+        :root {
+            --game-height: 400px;
+            --ground-height: 100px;
+        }
+
+        #game {
+            width: 800px;
+            height: var(--game-height);
+            border: 2px solid black;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, #87CEEB 50%, #228B22 50%);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0); /* 触发GPU加速 */
+        }
+
+        .game-object {
+            will-change: transform; /* 预提示浏览器进行优化 */
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            image-rendering: pixelated; /* 保持像素风格 */
         }
 
-        .loader {
-            font-size: 4rem;
-            animation: spin 1s linear infinite;
+        #mario {
+            width: 40px;
+            height: 60px;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9ImhvdHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjFGM0QzQkI4M0U0QjExRTNCNjQ5RUIzN0JFQjA2QkYwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjFGM0QzQkI5M0U0QjExRTNCNjQ5RUIzN0JFQjA2QkYwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MUYzRDNCODYzRTRCMTFFM0I2NDlFQjM3QkVCMDZCRjAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MUYzRDNCODczRTRCMTFFM0I2NDlFQjM3QkVCMDZCRjAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4MjPshAAABK0lEQVR42mL8//8/AyWAiYFyYKEAG4FAYD4D6QBkgJ9CoqIMDAx/GVABXl4+Bi4ubpz0X7x4zvD7929sBvwH4v8xcfPy8jEICgrhpP/ixTOsBqC5gM0AHh5eBjExCZz037x5xfDly2esBqC5gM0ADg5OBjExSZz03759zfDp00esBqC5gM0AFhZWBn5+QZz0P3x4x/D+/VusBqC5gM0AJiYmBjY2Npz0v379wvD06UOsBqC5gM0ARkZGBiYmvMkIqwFoLuAyABdAMwCXAbgAmgG4DMAF0AzAZQAugGYALgNwATQDcBmAC6AZgMsAXADNAFwG4AJoBuAyABdAMwCXAbgAmgG4DMAF0AyghAEAQIAAAU31Bm0AAAAASUVORK5CYII=');
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        .ground {
+            width: 100%;
+            height: var(--ground-height);
+            background: #8B4513;
+            position: absolute;
+            bottom: 0;
+            transform: translateZ(0);
+        }
+
+        .goomba {
+            width: 40px;
+            height: 40px;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAvklEQVR42u2WQQ6DMAwFy1Hw/88FQkK0aVwH1q1WQkLqxJN4EELI1nV9YoxXzjkS0VfEeA6BEAK11g4BZn5EwMyXCLTWRgHM/BmB1toogJlPEeCcOwWMMacB3vsxgHPuFOC9PwUQ0SkAER0DENEuABHtAhDRLgAR7QIQ0S4AEe0CENEuABHtAhDRLgAR7QIQ0S4AEe0CENEuABHtAhDRLgAR7QIQ0S4AEe0CENEuABHtAhDRLgAR7QJ+ZP0FGADWBVGIB3K0BgAAAABJRU5ErkJggg==');
+        }
+
+        /* 使用CSS动画优化敌人移动 */
+        @keyframes walk {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-40px); }
+        }
+
+        .optimized-animation {
+            animation: walk 1s infinite steps(2);
         }
     </style>
 </head>
-
 <body>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header text-center">
-                <h5 class="m-0">QQ绑定查询@不吃小喻</h5>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="qqInput">注:仅测试自己信息是否泄漏，违法行为与作者无关，一切后果由本人承担，最终解释权归作者所有，使用则默认同意本条例</label>
-                    <input type="text" id="qqInput" class="form-control">
-                </div>
-                <div class="text-center text-center-vh">
-                    <i class="fas fa-spinner fa-spin loader" id="loadingSpinner"></i>
-                </div>
-                <button id="searchBtn" class="btn btn-primary btn-block w-100 mt-4">查询</button>
-
-                <div id="result" class="mt-4"></div>
-            </div>
-        </div>
+    <div class="controls">
+        <button onclick="startGame()">开始游戏</button>
+    </div>
+    <div id="game">
+        <div class="ground"></div>
+        <div id="mario" class="game-object"></div>
     </div>
 
-    <!-- 引入Bootstrap的JS文件 -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        // 获取查询按钮和结果容器元素
-        const searchBtn = document.getElementById('searchBtn');
-        const resultContainer = document.getElementById('result');
-        const qqInput = document.getElementById('qqInput');
-        const loadingSpinner = document.getElementById('loadingSpinner');
-
-        // 设置加载状态
-        let loading = false;
-
-        // 页面加载完成后隐藏加载圆圈
-        window.addEventListener('load', function () {
-            loadingSpinner.style.display = 'none';
-        });
-
-        searchBtn.addEventListener('click', function () {
-            // 如果在加载中，直接返回
-            if (loading) {
-                return;
+        // 使用对象池管理游戏对象
+        class GameObjectPool {
+            constructor() {
+                this.pool = [];
+                this.active = new Set();
             }
 
-            // 获取输入的QQ号码
-            const qq = qqInput.value;
-
-            if (qq === '') {
-                // 处理输入为空的情况
-                resultContainer.innerHTML = '<p class="text-danger">输入不能为空</p>';
-                return;
+            get() {
+                const obj = this.pool.pop() || document.createElement('div');
+                obj.classList.add('game-object');
+                this.active.add(obj);
+                return obj;
             }
 
-            // 显示加载圆圈和禁用输入和按钮
-            loadingSpinner.style.display = 'inline-block';
-            qqInput.disabled = true;
-            searchBtn.disabled = true;
+            release(obj) {
+                obj.remove();
+                this.active.delete(obj);
+                this.pool.push(obj);
+            }
+        }
 
-            // 设置加载状态为 true
-            loading = true;
+        const enemyPool = new GameObjectPool();
+        const mario = {
+            element: document.getElementById('mario'),
+            x: 50,
+            y: 240,
+            speedX: 0,
+            speedY: 0,
+            isJumping: false,
+            gravity: 0.8,
+            velocityX: 0,
+            acceleration: 0.5,
+            friction: 0.85,
+            maxSpeed: 6
+        };
 
-            // 发送API请求
-            const apiUrl = `https://zy.xywlapi.cc/qqapi?qq=${qq}`;
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 200) {
-                        // 渲染查询结果
-                        resultContainer.innerHTML = `
-                            <p><strong>QQ号码:</strong> ${data.qq}</p>
-                            <p><strong>手机号码:</strong> ${data.phone}</p>
-                            <p><strong>手机号码归属地:</strong> ${data.phonediqu}</p>
-                        `;
-                    } else {
-                        // 处理没有找到的情况
-                        resultContainer.innerHTML = `<p class="text-danger">${data.message}</p>`;
-                    }
+        let gameRunning = false;
+        let lastTime = 0;
+        const deltaTime = 1000/60; // 固定时间步长
 
-                    // 隐藏加载圆圈和启用输入和按钮
-                    loadingSpinner.style.display = 'none';
-                    qqInput.disabled = false;
-                    searchBtn.disabled = false;
-                    // 设置加载状态为 false
-                    loading = false;
-                },1000)
-                .catch(error => {
-                    // 处理其他错误
-                    resultContainer.innerHTML = `<p class="text-danger">查询出错: ${error}</p>`;
+        function startGame() {
+            gameRunning = true;
+            lastTime = performance.now();
+            gameLoop();
+            initGame();
+        }
 
-                    // 隐藏加载圆圈和启用输入和按钮
-                    loadingSpinner.style.display = 'none';
-                    qqInput.disabled = false;
-                    searchBtn.disabled = false;
-                    // 设置加载状态为 false
-                    loading = false;
-                },1000);
+        function gameLoop(currentTime) {
+            if (!gameRunning) return;
+
+            // 使用固定时间步长更新逻辑
+            while (currentTime - lastTime >= deltaTime) {
+                update(deltaTime);
+                lastTime += deltaTime;
+            }
+
+            render();
+            requestAnimationFrame(gameLoop);
+        }
+
+        function update(dt) {
+            // 物理计算使用固定时间步长
+            const scale = dt / 16.667; // 标准化时间系数
+            
+            // 马里奥运动
+            mario.velocityX = Math.min(mario.maxSpeed, 
+                Math.max(-mario.maxSpeed, mario.velocityX + mario.speedX * scale));
+            mario.x += mario.velocityX * scale;
+            mario.velocityX *= mario.friction;
+
+            // 垂直运动
+            mario.speedY += mario.gravity * scale;
+            mario.y += mario.speedY * scale;
+
+            // 碰撞检测和边界限制
+            collisionDetection();
+            boundaryCheck();
+        }
+
+        function render() {
+            // 使用transform进行GPU加速渲染
+            mario.element.style.transform = `translate3d(${mario.x}px, ${mario.y - 240}px, 0)`;
+        }
+
+        function collisionDetection() {
+            // 简化的地面碰撞检测
+            if (mario.y > 240) {
+                mario.y = 240;
+                mario.speedY = 0;
+                mario.isJumping = false;
+            }
+        }
+
+        function boundaryCheck() {
+            mario.x = Math.max(0, Math.min(760, mario.x));
+        }
+
+        // 键盘控制优化（使用位操作）
+        const keys = {
+            ArrowLeft: 0,
+            ArrowRight: 0,
+            Space: 0
+        };
+
+        document.addEventListener('keydown', (e) => {
+            if (keys.hasOwnProperty(e.code)) {
+                keys[e.code] = 1;
+                e.preventDefault();
+            }
         });
+
+        document.addEventListener('keyup', (e) => {
+            if (keys.hasOwnProperty(e.code)) {
+                keys[e.code] = 0;
+                e.preventDefault();
+            }
+        });
+
+        // 使用独立的输入处理循环
+        setInterval(() => {
+            if (!gameRunning) return;
+
+            mario.speedX = keys.ArrowRight - keys.ArrowLeft;
+            
+            if (keys.Space && !mario.isJumping) {
+                mario.speedY = -15;
+                mario.isJumping = true;
+            }
+        }, 16);
+
+        // 其他游戏初始化代码...
     </script>
 </body>
-
 </html>
