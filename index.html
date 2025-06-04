@@ -1,104 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>超级马里奥</title>
     <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            background: #f0f2f5;
-            display: flex;
-            justify-content: center;
-        }
-        .leaderboard {
-            width: 100%;
-            max-width: 800px;
-            font-family: 'Segoe UI', sans-serif;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-            border-radius: 12px;
-            background: white;
-            padding: 25px;
-        }
-        .list-item {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            margin: 10px 0;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
-        }
-        .list-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-        }
-        .rank {
-            width: 60px;
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #495057;
-        }
-        .name {
-            flex-grow: 1;
-            margin: 0 25px;
-            color: #212529;
-        }
-        .score {
-            width: 100px;
-            text-align: right;
-            color: #2b8a3e;
-            font-weight: 600;
-            font-size: 1.2em;
-        }
-        .progress-bar {
-            width: 200px;
-            height: 6px;
-            background: #e9ecef;
-            border-radius: 3px;
-            margin-left: 30px;
-        }
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #4dabf7, #339af0);
-            border-radius: 3px;
-        }
-        h2 {
-            color: #2c3e50;
-            font-size: 2em;
-            margin: 0 0 25px 0;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #339af0;
-        }
+        body { margin: 0; }
+        canvas { border: 2px solid #333; display: block; margin: 20px auto; }
     </style>
 </head>
 <body>
-    <div class="leaderboard">
-        <h2>🏆 畜生排行榜</h2>
-        <div class="list-item" style="background: #fff3bf">
-            <div class="rank">1</div>
-            <div class="name">赵畅</div>
-            <div class="score">畜生程度</div>
-            <div class="progress-bar"><div class="progress" style="width: 100%"></div></div>
-        </div>
-        <div class="list-item" style="background: #e9ecef">
-            <div class="rank">2</div>
-            <div class="name">陈果冻</div>
-            <div class="score">畜生程度</div>
-            <div class="progress-bar"><div class="progress" style="width: 99%"></div></div>
-        </div>
-        <div class="list-item" style="background: #ffe066">
-            <div class="rank">3</div>
-            <div class="name">暂未定</div>
-            <div class="score">畜生程度</div>
-            <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
-        </div>
-        <div class="list-item">
-            <div class="rank">4</div>
-            <div class="name">暂未定</div>
-            <div class="score">畜生程度</div>
-            <div class="progress-bar"><div class="progress" style="width: 0%"></div></div>
-        </div>
-    </div>
+    <canvas id="canvas" width="800" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let keys = {};
+        let mario = {
+            x: 50, y: 400,
+            width: 40, height: 60,
+            speed: 5, jumpForce: -12,
+            gravity: 0.8, isJumping: false,
+            score: 0
+        };
+        const platforms = [
+            { x: 0, y: 580, width: 800, height: 20 },
+            { x: 200, y: 500, width: 200, height: 20 },
+            { x: 500, y: 420, width: 200, height: 20 }
+        ];
+
+        // 加载图片
+        const img = new Image();
+        img.src = 'https://via.placeholder.com/100x100/FFD700/000?text=Mario'; // 临时占位图
+
+        // 碰撞检测
+        function checkCollision(obj1, obj2) {
+            return obj1.x < obj2.x + obj2.width &&
+                   obj1.x + obj1.width > obj2.x &&
+                   obj1.y < obj2.y + obj2.height &&
+                   obj1.y + obj1.height > obj2.y;
+        }
+
+        // 处理跳跃
+        function handleJump() {
+            if (mario.isJumping) {
+                mario.y += mario.jumpForce;
+                mario.jumpForce += mario.gravity;
+                
+                // 检测平台碰撞
+                platforms.forEach(plat => {
+                    if (checkCollision(mario, plat)) {
+                        mario.y = plat.y - mario.height;
+                        mario.isJumping = false;
+                        mario.jumpForce = -12;
+                    }
+                });
+            }
+        }
+
+        // 键盘事件
+        document.addEventListener('keydown', e => keys[e.code] = true);
+        document.addEventListener('keyup', e => delete keys[e.code]);
+
+        // 游戏循环
+        function update() {
+            // 移动逻辑
+            if (keys['ArrowLeft']) mario.x -= mario.speed;
+            if (keys['ArrowRight']) mario.x += mario.speed;
+            if (keys['Space'] && !mario.isJumping) mario.isJumping = true;
+            
+            handleJump();
+            draw();
+            requestAnimationFrame(update);
+        }
+
+        // 绘制画面
+        function draw() {
+            ctx.fillStyle = '#33CCFF'; // 天空背景
+            ctx.fillRect(0, 0, 800, 600);
+            
+            // 绘制平台
+            ctx.fillStyle = '#663300';
+            platforms.forEach(plat => {
+                ctx.fillRect(plat.x, plat.y, plat.width, plat.height);
+            });
+            
+            // 绘制马里奥
+            ctx.fillStyle = '#FF0000'; // 帽子颜色
+            ctx.fillRect(mario.x, mario.y, mario.width, mario.height);
+            ctx.fillStyle = '#FFFFFF'; // 手套
+            ctx.fillRect(mario.x-5, mario.y+20, 10, 10);
+            
+            // 绘制分数
+            ctx.fillStyle = '#000';
+            ctx.font = '20px Arial';
+            ctx.fillText(`得分: ${mario.score}`, 20, 40);
+        }
+
+        update();
+    </script>
 </body>
 </html>
