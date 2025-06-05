@@ -1,1626 +1,380 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<title>咸丰县第三届&ldquo;电信杯&rdquo;青少年歌手大赛（少儿组）&ldquo;最佳人气奖&rdquo;网络评选</title>
-		<meta charset="UTF-8">
-<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover" name="viewport" />
-<meta name="keywords" content="咸丰县第三届&ldquo;电信杯&rdquo;青少年歌手大赛（少儿组）&ldquo;最佳人气奖&rdquo;网络评选投票"/>
-<meta name="description" content="咸丰县第三届&ldquo;电信杯&rdquo;青少年歌手大赛（少儿组）&ldquo;最佳人气奖&rdquo;网络评选从2025-06-15 20:00开始至2025-06-15 20:00截至，规则为每个微信号每天可以投票10次，每天可为同一选手投票10次"/>
-<meta name="token" content="ad9f258cf43632326cd5f995d9e83d43"/>
-<link href="//static2.weitoupiao.com/assets/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
-<link href="//static2.weitoupiao.com/assets/plugins/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="//static2.weitoupiao.com/assets/plugins/swiper/swiper.min.css" rel="stylesheet">
-<link href="//static2.weitoupiao.com/assets/spread/common/css/spread.vote.colors.css?v=0.12" rel="stylesheet">
-<link href="//static2.weitoupiao.com/assets/spread/common/css/spread.vote.common.css?v=2.21" rel="stylesheet">
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1126168_nkjz2cedvlj.css">
-<script src="//static2.weitoupiao.com/assets/plugins/vue/vue.min.js" crossorigin="anonymous"></script>
-<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/jquery/jquery.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/bluebird/latest/bluebird.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/spread/common/js/vue-masonry-plugin-window.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/jquery-pjax/jquery.pjax.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/jquery-cookie/jquery.cookie.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/jquery-marquee/jquery.marquee.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/jquery-validate/jquery.validate.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/jquery-validate/messages_zh.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/jquery-form/jquery.form.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/layer/3.1.1/layer.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/swiper/swiper.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/imagesloaded/imagesloaded.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/html2canvas/html2canvas.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/jquery-qrcode/jquery.qrcode.min.js" crossorigin="anonymous"></script>
-<script src="//static2.weitoupiao.com/assets/plugins/qrcode/qrcode.min.js"></script>  
-<script src="//static2.weitoupiao.com/assets/common/js/utils.web.js?v=0.10" crossorigin="anonymous"></script>
-
-
-<script>
-
-    // window.onerror = function (msg, url, l) {
-    //     var txt = "There was an error on this page.\n\n"
-    //     txt += "Error: " + msg + "\n"
-    //     txt += "URL: " + url + "\n"
-    //     txt += "Line: " + l + "\n\n"
-    //     txt += "Click OK to continue.\n\n"
-    //     alert(txt)
-    //     return true
-    // }
-    //
-    // if (typeof Vue != 'undefined') {
-    //     Vue.config.errorHandler = function(err, vm, info) {
-    //         var txt = "There was an error on this page.\n\n"
-    //         txt +=  "Error: " + err.toString() + "\\nInfo: " + info + "\n"
-    //         txt += "Click OK to continue.\n\n"
-    //         alert(txt)
-    //         return true
-    //     }
-    // }
-
-    if(typeof window["vue-masonry-plugin"] != 'undefined'){
-        var vmp = window["vue-masonry-plugin"].VueMasonryPlugin;
-        Vue.use(vmp)
-    }else{
-        setTimeout(function(){
-            var vmp1 = window["vue-masonry-plugin"].VueMasonryPlugin;
-            Vue.use(vmp1)
-        },800)
-    }
-</script>
-
-
-<link href="//static2.weitoupiao.com/assets/spread/vote/tpl27/css/style.css?v=0.98" rel="stylesheet">
-	</head>
-	<body>
-	<section>
-        <div class="page container-fluid vue" id="pjax-box" v-cloak>
-            <div class="row" v-if="vote.param.text_notice">
-    <div class="col-12">
-        <div style="height:25px;"></div>
-        <p :class="'marquee tpl-bg-' + vote.param.style_color" :style="vote.id === '6shfd2kqodg22' ? 'font-size: 15px;' : ''"><i class="fa fa-volume-up"></i> {{strReplace(vote.param.text_notice)}}</p>
-    </div>
-</div>
-			<!-- 轮播区块 -->
-                            <div class="row" v-if="vote.param['display_' + current_page + '_banner']">
-    <div class="col-12 swiper-box" v-if="vote.param.vote_banners.length > 0">
-        <div class="swiper-container swiper-container1">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="vote_banner,index in vote.param.vote_banners">
-                    <a :href="vote_banner.link ? strReplace(vote_banner.link) : 'javascript:;'" :target="vote.id !='9zwkfl7b6su38' ? '_blank' : '_self'">
-                        <img :src="customBannerHD(vote_banner.img_url)" v-if="['l7yrigm6z82vq','r48twxr25i4h4'].indexOf(vote.id) > -1"/>
-                        <img :src="vote_banner.img_url" v-else @click="previewImage(vote_banner.img_url,['9zwkfl7b6su38'])"/>
-                    </a>
-                </div>
-                <div class="swiper-slide" v-if="vote.id === '6ztnsljpkoodj'">
-                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114080438361874&bvid=BV1wD9uYuEJt&cid=28617412586&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;"></iframe>
-                </div>
-            </div>
-            <div class="swiper-pagination swiper-pagination1"></div>
-        </div>
-    </div>
-</div>
-			           
-            <!-- 顶部标题 -->
-            <div class="row title-box mt-all text-center main-title text-style-1" v-if="vote.param['display_' + current_page + '_title']">
-                <div class="col-12">
-                    <p>{{vote.title}}</p>
-                </div>
-            </div>
-            
-            <!-- 数据区块 -->			    
-            <div class="row stat-box mt-all" v-if="vote.param['display_' + current_page + '_data']">
-    <div class="col-12">
-        <div class="card card-default shadow">
-            <div class="card-warp">
-                <div class="row text-center">
-                    <div class="col-4">
-                        <div class="card-item">
-                            <p class="number">{{vote.vote_item_count + vote.param.display_vote_item_count}}</p>
-                            <p>参与{{vote.param.text_vote_item_alias}}</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card-item">
-                            <p class="number">{{vote.vote_count + vote.param.display_vote_count}}</p>
-                            <p>累计{{vote.param.text_vote_unit}}数</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card-item">
-                            <p class="number">{{vote.read_count + vote.param.display_read_count}}</p>
-                            <p>累计访问</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer text-center diff-time-box text-styel-1">
-                <span class="text count-down-box">距离结束剩余 <span>-</span> 天 <span>-</span> 时 <span>-</span> 分 <span>-</span> 秒</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-            <!-- 数据区块 -->
-            
-            <!-- 报名按钮 -->
-            <div class="row sign-btn-box mt-all" v-if="vote.param.sign_open && vote.param.display_navbar_sign">
-                <div class="col-6 offset-3">
-                    <a :href="api.sign" class="btn btn-block rad bg-style-1">
-                        {{vote.param.text_vote_item_alias}}报名
-                    </a>
-                </div>
-            </div>
-            
-            <!-- 规则区块 -->
-            <div class="row rule-box mt-all" v-if="vote.param['display_' + current_page + '_rule']">
-    <div class="col-12">
-        <div class="regular-title text-style-1"><span></span> 活动规则 <span></span></div>
-        <div class="card card-default shadow">
-            <div class="card-body">
-                <p v-if="vote.param.rule_custom_text">
-                    <i class="fa fa-clock-o text-style-1"></i>
-                    {{vote.param.rule_custom_text}}
-                </p>
-                 <p style="font-weight: bold;font-size:14px;color:#000;" v-if="vote.id === 'puah4a6jr4clz'">
-                    <i class="fa fa-clock-o text-style-1"></i>
-                    活动开始：{{vote.start_time.split(' ')[0]}}
-                </p>
-                <p v-else>
-                    <i class="fa fa-clock-o text-style-1"></i>
-                    活动开始：{{vote.start_time}}
-                </p>
-                <p style="font-weight: bold;font-size:14px;color:#000;" v-if="vote.id === 'puah4a6jr4clz'">
-                    <i class="fa fa-clock-o text-style-1"></i>
-                    活动结束：{{vote.end_time.split(' ')[0]}}
-                </p>
-                <p v-else>
-                    <i class="fa fa-clock-o text-style-1"></i>
-                    活动结束：{{vote.end_time}}
-                </p>
-                <p :style="vote.id === 'puah4a6jr4clz' ? 'font-weight: bold;font-size:14px;color:#000;' : ''">
-                    <i class="fa fa-info-circle text-style-1"></i>
-                    活动规则：{{vote.param.rule_text}}
-                </p>
-                <div v-if="vote.param.display_index_content_show > 0 && vote.content && current_page == 'index'">
-                    <p class="mb-0" v-if="vote.param.display_index_content_show != 1">
-                        <span><i class="fa fa-file-text-o text-style-1"></i> 活动说明：</span>
-                        <a href="javascript:;" class="text-style-1" @click="vote.param.display_index_content_show=vote.param.display_index_content_show==3 ? 2 : 3" 
-                        style="text-decoration:none;">{{vote.param.display_index_content_show==3 ? '折叠' : '展开'}}
-                            <i class="fa" :class="{'fa-chevron-circle-right':vote.param.display_index_content_show==2,'fa-chevron-circle-down':vote.param.display_index_content_show==3}"></i>
-                        </a>
-                    </p>
-                    <div class="rule-content-box vote-item-content-box" v-html="vote.content" v-if="vote.param.display_index_content_show==3 || vote.param.display_index_content_show==1">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-            
-            <!-- 搜索条 -->
-            <div class="row search-box mt-all" v-if="vote.param.display_index_search">
-                <div class="col-12">
-                    <div class="input-group border-left-1">
-                        <input type="text" name="keyword"
-                        class="form-control keyword text-style-1"
-                        :placeholder="vote.id === 'l38urn57m5pui' ? '请输入作者昵称、编号' : '请输入' + vote.param.text_vote_item_alias + '名称、编号'" 
-                        v-model="vote_items.keyword" @keyup.enter="get_vote_items_by_search">
-                        <span class="input-group-btn">
-                            <button class="btn bg-style-1" type="button" @click="get_vote_items_by_search">
-                                <i class="iconfont icon-sousuo"></i>
-                                搜索
-                            </button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row mt-3" v-if="vote_items.keyword">
-                <div class="col-12 text-center">
-                    <p class="text-style-1">搜索关键词"{{vote_items.keyword}}" <a href="javascript:;" @click="clear_search">取消搜索</a>
-                    </p>
-                </div>
-            </div>
-
-            <!-- 选手分类 -->
-            <div class="row type-box mt-all" v-if="vote.param['display_' + current_page + '_vote_item_type'] && vote_item_types.length > 0">
-    <div class="item" v-if="vote.param['display_' + current_page + '_vote_item_type_all_button'] == 1"
-    :class="{'col-12':vote.param.page_vote_item_type_column === 1,'col-6':vote.param.page_vote_item_type_column === 2,'col-4':vote.param.page_vote_item_type_column === 3,'col-3':vote.param.page_vote_item_type_column === 4}">
-        <a href="javascript:;" class="btn btn-block" style="padding:6px 0;"
-        @click="get_vote_items_by_type()"
-        :class="vote_items.vote_item_type_id==0 ? 'bg-style-1' : 'bg-style-1-o'">全部分类</a>
-    </div>
-    <div class="item" v-for="vote_item_type,index in vote_item_types"
-    :class="{'col-12':vote.param.page_vote_item_type_column === 1,'col-6':vote.param.page_vote_item_type_column === 2,'col-4':vote.param.page_vote_item_type_column === 3,'col-3':vote.param.page_vote_item_type_column === 4}">
-        <a href="javascript:;" class="btn btn-block" style="padding:6px 0;"
-        @click="get_vote_items_by_type(vote_item_type, index)"
-        :class="vote_items.vote_item_type_id==vote_item_type.id ? 'bg-style-1' : 'bg-style-1-o'">{{vote_item_type.title}}</a>
-    </div>
-</div>
-            
-            <!-- 选手加载 -->
-            <div v-masonry transition-duration="0.3s" item-selector=".vote-item" class="row vote-item-box clearfix" v-if="vote_items.data.length > 0 && vote.param.display_index_show_type == 1">
-                <div v-masonry-tile class="vote-item item widget-vote-item" v-for="vote_item,index in vote_items.data"
-                :class="{'col-12':vote.param.display_index_column==1,'col-6':vote.param.display_index_column==2,'col-4':vote.param.display_index_column >=3}"> 
-                    <div class="card card-default">
-                        <div class="card-heading text-center" v-if="vote_item.index && vote.param.display_index_vote_item_number"
-                            :style="vote.id === 'puah4a6jr4clz' ? 'font-weight:bold;color:#1c237d !important;' : ''">
-                            <span v-if="vote.id === 'puah4a6jr4clz'">{{vote_item_types.filter(val=> val.id == vote_item.vote_item_type_id)[0].title}}</span><span class="index">{{vote_item.index < 10 ? '0' + vote_item.index : vote_item.index}}</span>号
-                        </div>
-                        <div class="card-body text-center">
-                            <a class="coverlink link vote_align_box" v-if="vote.param.display_index_vote_item_cover" v-html="vote_item.cover_bom"
-                                href="javascript:;"
-                                @click="goDetail(api.detail,vote_item.id)">
-                            </a>
-                            <div class="mt-all">
-                                <p class="title text-center" v-if="vote_item.title && (vote.param.display_index_vote_item_name || ['dunfiniglob6h','mgt8zrmq282wp'].indexOf(vote.id) > -1)">
-                                    <a class="link text-style-1"
-                                        href="javascript:;"
-                                        @click="goDetail(api.detail,vote_item.id)">{{vote_item.title}}</a>
-                                </p>
-                                <p class="sub-title text-center" v-if="vote_item.slogan && vote.param.display_index_vote_item_slogan">
-                                    <a class="link text-style-1"
-                                        href="javascript:;"
-                                        @click="goDetail(api.detail,vote_item.id)">{{vote_item.slogan}}</a>
-                                </p>
-                                <p class="count text-style-1" v-if="vote.param.display_index_vote_count">
-                                    <span>{{vote_item.vote_count}}</span>{{vote.param.text_vote_unit}}
-                                </p>
-                                <p class="text-center vote-item-btn mt-all" v-if="vote.param.display_index_vote_item_button">
-                                    <a class="btn rad bg-style-1" href="javascript:;" @click="send_vote(vote_item, index)"
-                                    v-if="vote.param.vote_rule.rule_type==1">{{vote.param.text_vote_btn_name}}</a>
-                                    <a class="btn rad bg-style-1" href="javascript:;" @click="check_vote(vote_item, index)"
-                                    v-if="vote.param.vote_rule.rule_type==2">{{check_vote_item_ids.indexOf(vote_item.id) >= 0 ? '取消' : '选择'}}</a>
-                                </p>
-                                <p class="text-center vote-item-btn mb-0" v-if="vote.param.display_index_vote_item_detail">
-                                    <a class="btn rad bg-style-1"
-                                        href="javascript:;"
-                                        @click="goDetail(api.detail,vote_item.id)">详情</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row vote-item-box clearfix aligning" v-if="vote_items.data.length > 0 && vote.param.display_index_show_type == 2">
-                <div class="vote-item item widget-vote-item" v-for="vote_item,index in vote_items.data"
-                :class="{'col-12':vote.param.display_index_column==1,'col-6':vote.param.display_index_column==2,'col-4':vote.param.display_index_column >=3}">
-                    <div class="card card-default">
-                        <div class="card-heading text-center" v-if="vote_item.index && vote.param.display_index_vote_item_number"
-                            :style="vote.id === 'puah4a6jr4clz' ? 'font-weight:bold;color:#1c237d !important;' : ''">
-                            <span v-if="vote.id === 'puah4a6jr4clz'">{{vote_item_types.filter(val=> val.id == vote_item.vote_item_type_id)[0].title}}</span><span class="index">{{vote_item.index < 10 ? '0' + vote_item.index : vote_item.index}}</span>号
-                        </div>
-                        <div class="card-body text-center">
-                            <a class="coverlink link vote_align_box" v-if="vote.param.display_index_vote_item_cover" v-html="vote_item.cover_bom"
-                                href="javascript:;"
-                                @click="goDetail(api.detail,vote_item.id)">
-                            </a>
-                            <div class="mt-all">
-                                <p class="title text-center" v-if="vote_item.title && (vote.param.display_index_vote_item_name || ['dunfiniglob6h','mgt8zrmq282wp'].indexOf(vote.id) > -1)">
-                                    <a class="link text-style-1"
-                                        href="javascript:;"
-                                        @click="goDetail(api.detail,vote_item.id)">{{vote_item.title}}</a>
-                                </p>
-                                <p class="sub-title text-center" v-if="vote_item.slogan && vote.param.display_index_vote_item_slogan">
-                                    <a class="link text-style-1"
-                                        href="javascript:;"
-                                        @click="goDetail(api.detail,vote_item.id)">{{vote_item.slogan}}</a>
-                                </p>
-                                <p class="count text-style-1" v-if="vote.param.display_index_vote_count">
-                                    <span>{{vote_item.vote_count}}</span>{{vote.param.text_vote_unit}}
-                                </p>
-                                <p class="text-center vote-item-btn mt-all" v-if="vote.param.display_index_vote_item_button">
-                                    <a class="btn rad bg-style-1" href="javascript:;" @click="send_vote(vote_item, index)"
-                                    v-if="vote.param.vote_rule.rule_type==1">{{vote.param.text_vote_btn_name}}</a>
-                                    <a class="btn rad bg-style-1" href="javascript:;" @click="check_vote(vote_item, index)"
-                                    v-if="vote.param.vote_rule.rule_type==2">{{check_vote_item_ids.indexOf(vote_item.id) >= 0 ? '取消' : '选择'}}</a>
-                                </p>
-                                <p class="text-center vote-item-btn mb-0" v-if="vote.param.display_index_vote_item_detail">
-                                    <a class="btn rad bg-style-1"
-                                        href="javascript:;"
-                                        @click="goDetail(api.detail,vote_item.id)">详情</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" v-if="vote.param.page_vote_item_load_type == 1">
-                <div class="col-12" v-if="vote_items.data.length < 1">
-                    <div class="text-center pt-5 pb-5">
-                        <img src="//static2.weitoupiao.com/assets/spread/vote/tpl1/img/icon-empty.png" style="width:120px;margin:auto;">
-                        <p class="mt-3">{{error_msg ? error_msg :  (!vote_items.done ? '正在加载中~' : '没有找到任何' + vote.param.text_vote_item_alias + '~')}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row vote-item-load-box text-center mt-all" v-if="vote_items.data.length > 0 && vote.param.page_vote_item_load_type == 1">
-                <!-- <img class="icon" src="//static2.weitoupiao.com/assets/spread/vote/tpl2/img/loading.gif"> -->
-                <p class="msg text-center" style="width: 100%;" @click="clickVoteItemMore()">{{error_msg ? error_msg : (vote_items.done ? '拉不动了，这里已达最底部' : (vote_items.running ? '正在读取中' : '点击或滚动读取更多' + vote.param.text_vote_item_alias + '...'))}}</p>
-            </div>
-            
-             <div class="text-center mt-3" :class="vote.param.style_tpl !== 58 ? 'row' : ''" v-if="vote.param.page_vote_item_load_type == 2 && vote_items.page_total > 0" :style="current_page == 'rank' && vote.param.display_rank_show == 0 ? 'display:none;' : ''">
-    <nav aria-label="Page navigation example" style="width: 100%;">
-        <ul class="pagination justify-content-center mb-0">
-            <li class="page-item" v-for="n in pages" :key="n">
-                <span class="page-link" :class="'tpl-bg-' + vote.param.style_color" v-if="n == vote_items.page"
-                    style="border: 1px solid transparent;">
-                    {{n}}
-                </span>
-                <span class="page-link" :class="'tpl-text-' + vote.param.style_color" v-else-if="n == '...'">
-                    {{n}}
-                </span>
-                <a class="page-link" :class="'tpl-text-' + vote.param.style_color" href="javascript:;" @click="goPageCount(n)" v-else>{{n}}</a>
-            </li>
-        </ul>
-    </nav>
-</div>
-
-            <!-- 底部文字 -->
-            <div class="row mt-3 footer-box">
-    <a href="/custom?type=complaint" target="_blank" v-if="current_page === 'detail' && vote.param.style_tpl !== 59" 
-    class="col-12 text-right" style="margin-bottom: 5px;"
-    :style="vote.id === '21qrjzposs6ba' ? 'color:#fff;' : vote.param.style_tpl == 1 ? 'color:#212529;' : ''"><i class="iconfont icon-jubao"></i> 举报/投诉</a>
-    <div class="col-12">
-        <div class="text-left" v-if="vote.param.text_copyright && vote.id === 'yznrgcse5d1xe'">
-            <p>一队：西南医科大学附属医院代表队</p>
-            <p>二队：西安交通大学第一附属医院代表队</p>
-            <p>五队：深圳代表队</p>
-            <p>六队：河北医科大学第二医院代表队</p>
-            <p>九队：广州代表队</p>
-            <p>十队：陆军军医大学新桥医院代表队</p>
-        </div>
-        <div v-if="vote.param.text_copyright && vote.id === 'bxes2exsy3l68'" class="text-center">
-            <p style="font-size: 16px;color: rgb(239,222,163);margin-bottom: 10px;font-weight: bold;">主办单位</p>
-            <p style="margin-bottom: 5px;">中共安庆市委宣传部&nbsp;&nbsp;&nbsp;中共安庆市委组织部</p>
-            <p style="margin-bottom: 5px;">中共安庆市委网信办&nbsp;&nbsp;&nbsp;安庆市文明办</p>
-            <p>中共安庆市委讲师团</p>
-        </div>
-        <div v-if="vote.param.text_copyright && vote.id === 'm9cw6gx6du62o'">
-            <p class="text-center" v-for="item in vote.param.text_copyright.split(' ')">
-                {{item}}
-            </p>
-        </div>
-        <p v-if="vote.param.text_copyright && ['yznrgcse5d1xe','bxes2exsy3l68','m9cw6gx6du62o'].indexOf(vote.id) === -1" :class="vote.id == '1nhuvoeziuewf' ? '' : 'text-center'" :style="['21qrjzposs6ba','mi6bopkiga4sk','3cbxw5y8vmm16','f35hkkfv6q4ev','fi6end0r886fa','05zuay43ebrpv','xpoaf2vvs4ssq','njglfc7xsyf7b'].indexOf(vote.id) >-1 ? 'color:#fff' : vote.id === '2pw4c3hmbvnja' ? 'font-size:13px;line-height:20px;' : ''" v-html="replaceTitle(vote.param.text_copyright)"></p>
-        <div v-if="vote.param.display_copyright" class="text-center" :style="vote.id === '21qrjzposs6ba' ? 'color:#fff' : ''"><div style="margin-bottom:15px;"><a href="http://www.weitoupiao.com/?from=copyright" target="_blank" style="font-size:11px;color:#666;opacity:0.8;"><span style="font-weight:bold;">微投票</span> 提供技术支持</a></div></div>
-    </div>
-</div>
-
-
-            <!-- 底部导航条 -->
-            <!-- 多选模式选择状态 -->
-            <div class="row" style="height:60px;"></div>
-<div class="row" style="height:40px;" v-if="check_vote_item_ids.length > 0"></div>
-<div class="safe-box"></div>
-<div class="navbar-box">   
-    <div class="select-bar-box row text-styel-1" v-if="check_vote_item_ids.length > 0 && vote.param.vote_rule.rule_type === 2" style="margin: 0;border: none;">
-        <div class="col-8">
-            已选择 <span class="number">{{check_vote_item_ids.length}}</span> 个{{vote.param.text_vote_item_alias}}
-            <a href="javascript:;" @click="clear_check_vote_item_ids">
-                <i class="fa fa-close"></i>取消
-            </a>
-        </div>
-        <div class="col-4 text-center" style="padding:0;">
-            <a href="javascript:;" class="btn rad bg-style-1" @click="send_vote()">{{vote.param.text_vote_btn_name}}</a>
-        </div>
-    </div>
-
-    <div class="footer-bar-box text-center">
-        <div class="item" v-if="vote.param.display_navbar_home" :class="current_page == 'index' ? 'text-style-1' : ''">
-            <a :href="current_page == 'index' ? 'javascript:;' : api.index" class="item">
-                <i class="iconfont icon-shouye"></i>
-                <p>首页</p>
-            </a>
-        </div>
-        <div class="item" v-if="vote.param.display_navbar_content" :class="current_page == 'content' ? 'text-style-1' : ''">
-            <a :href="current_page == 'content' ? 'javascript:;' : api.content" class="item">
-                <i class="iconfont icon-gongdan"></i>
-                <p>详情</p>
-            </a>
-        </div>
-        <div class="item" v-if="vote.param.sign_open && vote.param.display_navbar_sign" :class="current_page == 'sign' ? 'text-style-1' : ''">
-            <a :href="current_page == 'sign' ? 'javascript:;' : api.sign" class="item">
-                <i class="iconfont icon-fatie"></i>
-                <p>报名</p>
-            </a>
-        </div>
-        <div class="item" v-if="vote.param.display_navbar_search">
-            <a href="javascript:;"  @click="alert_search" class="item">
-                <i class="iconfont icon-sousuo"></i>
-                <p>搜索</p>
-            </a>
-        </div>
-        <div class="item" v-if="vote.param.display_navbar_rank" :class="current_page == 'rank' ? 'text-style-1' : ''">
-            <a :href="current_page == 'rank' ? 'javascript:;' : api.rank" class="item">
-                <i class="iconfont icon-bangdan"></i>
-                <p>排名</p>
-            </a>
-        </div>
-        <div class="item"
-        v-if="vote.param.display_navbar_self_link && vote.param.display_navbar_self_name && vote.param.display_navbar_self">
-            <a :href="vote.param.display_navbar_self_link" target="_blank" class="item">
-                <i class="fa fa-star" style="width: 16px;height: 24px;display: inline-flex;align-items: center;"></i>
-                <p>{{vote.param.display_navbar_self_name}}</p>
-            </a>
-        </div>
-        <div class="item"
-        v-if="vote.param.display_navbar_self_link2 && vote.param.display_navbar_self_name2 && vote.param.display_navbar_self2">
-            <a :href="vote.param.display_navbar_self_link2" target="_blank" class="item">
-                <i class="fa fa-star" style="width: 16px;height: 24px;display: inline-flex;align-items: center;"></i>
-                <p>{{vote.param.display_navbar_self_name2}}</p>
-            </a>
-        </div>
-    </div>
-    <div class="safe-box"></div>
-</div>
-
-            <!-- 开屏幕广告 -->
-<div class="screen" v-if="vote.param.page_ad_img && vote.param.page_ad_second > 0 && !show_screen_ed" style="background: #000;">
-    <div :class="'pl-2 pr-2 pt-1 pb-1 screen-close-btn tpl-bg-' + vote.param.style_color" @click="close_screen" :style="['hykk9jdqsal3e','1ywrhnpx1a1y9'].indexOf(vote.id) > -1 ? 'top:10px;' : ''">{{vote.param.page_ad_second}}秒后关闭</div>
-    <a :href="vote.param.page_ad_img_link ? vote.param.page_ad_img_link : 'javascript:;'" :target="vote.param.page_ad_img_link ? '_blank' : ''" style="display:block;width:100%;height:100%;">
-        <img :src="vote.param.page_ad_img.url.replace('?imageView2/2/w/960/h/1080/q/90|imageslim','')" style="width:100%;height:100%;" v-if="['uv14q0z72ddfn','bkcyrshyi5noi','q6hsm3fdqk9mq','x44e8hrl8ff7i','djuw7nmr4h4x2','qtu24kyxmzgq0'].indexOf(vote.id) > -1">
-        <img :src="vote.param.page_ad_img.url" style="width:100%;height:100%;" v-else>
-    </a>
-</div>
-
-<!-- 搜索框 -->
-<div class="widget-search-box" style="width:100%;display: none;">
-    <div class="card border-0 m-0 search_box">
-                     <div class="text-center search-icon" v-if="['0r0zbrjhi3rwx','avbln4j6udlh8'].indexOf(vote.id) > -1">
-                <img src="" data-src="https://audio.weitoupiao.com/other/vote/custom/img/search_custom3.png" style="width:120px;"/>
-            </div>
-            <div class="text-center search-icon" v-else-if="vote.id == 'cz3vdc458ogh0'">
-                <img src="" data-src="//static2.weitoupiao.com/assets/spread/common/img/custom_search_img.jpg" style="width:120px;"/>
-            </div>
-            <div class="text-center search-icon" v-else-if="vote.id == 'd7rozim5k1wf4'">
-                <img src="" data-src="//static2.weitoupiao.com/assets/spread/common/img/search_1.png" style="width:120px;"/>
-            </div>
-            <div class="text-center search-icon" v-else-if="vote.id == 'wij60wikduhwd'">
-                <img src="" data-src="//static2.weitoupiao.com/assets/spread/common/img/search_custom1.jpg" style="width:100%;"/>
-            </div>
-            <div class="text-center search-icon" v-else>
-                <img src="" data-src="//static2.weitoupiao.com/assets/spread/common/img/svg-icon.svg" style="width:120px;"/>
-            </div>
-                <div class="col-12 form-group search-input" v-if="['10n6wrqxva26a','yrbu4jcpa0rv0'].indexOf(vote.id) > -1">
-            <input type="text" :placeholder="'请输入' + vote.param.text_vote_item_alias + '编号（例：1）'" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == '4nzw54ya91tam'">
-            <input type="text" placeholder="请输入银行名称或编号" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == '9yop9vwsg2c7f'">
-            <input type="text" placeholder="请输入机构名称或编号" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="['0r0zbrjhi3rwx','avbln4j6udlh8'].indexOf(vote.id) > -1">
-            <input type="text" placeholder="请输入选手姓名、编号" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == 'oiea9eudled7l'">
-            <input type="text" placeholder="请输入节目名称" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == 'tyvf8nb6atyl7'">
-            <input type="text" :placeholder="'请输入' + vote.param.text_vote_item_alias + '姓名或编号'" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == 'ldlouibcp0vln'">
-            <input type="text" placeholder="请输入编号" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == 'tgecydqw37hvj'">
-            <input type="text" :placeholder="'请输入' + vote.param.text_vote_item_alias + '姓名、编号'" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == 'io5qxfxjw8hsb'">
-            <input type="text" :placeholder="'请输入单位、' + vote.param.text_vote_item_alias + '名称'" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == '9pior5oykir6k'">
-            <input type="text" :placeholder="'请输入' + vote.param.text_vote_item_alias + '名字或编号'" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == '6lyk40btxbfqf'">
-            <input type="text" placeholder="请输入作者姓氏或编号" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == 'mqy6grc4deivm'">
-            <input type="text" placeholder="请输入作者姓氏或编号" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id == '6shfd2kqodg22'">
-            <input type="text" placeholder="请输入机构名称或案例编号" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id === 'o21jjxw55izn6'">
-            <input type="text"  :placeholder="'请输入' + vote.param.text_vote_item_alias + '名称'" class="form-control" v-model="vote_items.keyword" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else-if="vote.id === 'l38urn57m5pui'">
-            <input type="text"  placeholder="请输入作者昵称、编号" class="form-control" v-model="vote_items.keyword" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="col-12 form-group search-input" v-else>
-            <input type="text"  :placeholder="'请输入' + vote.param.text_vote_item_alias + '名称、' + (vote.id == 'rbd1ro4azksly' ? '序号' : '编号')" class="form-control" v-model="vote_items.keyword" class="form-control" v-model="vote_items.keyword" ref="keyword_input" @keyup.enter="get_vote_items_by_search">
-        </div>
-        <div class="row search_btn">
-            <div class="col"><button class="btn btn-lg btn-block btn_close" @click="clear_layer">取消</button></div>
-            <div class="col"><button class="btn btn-lg btn-block" :class="'tpl-bg-' + vote.param.style_color" @click="get_vote_items_by_search">搜索</button></div>
-        </div>
-    </div>
-</div>
-
-<style>
-    .captcha-keyboard{
-        width:100%;
-    }
-    .captcha-keyboard a{
-        display: block;
-        width: 33.33%;
-        height:20px;
-        border:1px solid #ccc;
-    }
-    .share-new-box-wrapper{
-        display:none;
-    }
-</style>
-
-<!-- 验证码 -->
-<div class="widget-captcha-box" style="width:100%;display: none;">
-    <div class="card border-0 m-0">
-        <div class="text-center mt-2">
-            <i :class="'fa fa-exclamation-circle tpl-text-' + vote.param.style_color" style="font-size:6rem;"></i>
-            <p :class="'mt-2 tpl-text-' + vote.param.style_color">验证码</p>
-        </div>
-        <div class="col-12 form-group mt-4 text-center">
-            <img :data-src="api.captcha_src" alt="" class="captcha" style="width:180px;">
-            <div>
-                <input type="text" disabled class="captcha-input mt-2" placeholder="请输入" v-model="send_vote_request.captcha" style="font-size: 16px;border:none; color:#f00;">
-            </div>
-            <div class="captcha-keyboard">
-                <a href="javascript:;" @click="input_captcha(1)">1</a>
-                <a href="javascript:;" @click="input_captcha(2)">2</a>
-                <a href="javascript:;" @click="input_captcha(3)">3</a>
-                <a href="javascript:;" @click="input_captcha(4)">4</a>
-                <a href="javascript:;" @click="input_captcha(5)">5</a>
-                <a href="javascript:;" @click="input_captcha(6)">6</a>
-                <a href="javascript:;" @click="input_captcha(7)">7</a>
-                <a href="javascript:;" @click="input_captcha(8)">8</a>
-                <a href="javascript:;" @click="input_captcha(9)">9</a>
-                <a href="javascript:;" @click="input_captcha('cancel')">取消</a>
-                <a href="javascript:;" @click="input_captcha(0)">0</a>
-                <a href="javascript:;" @click="input_captcha('delete')">删除</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 投票后弹出框 -->
-<div class="widget-vote-result-box" style="width:100%;display: none;">
-    <div class="card border-0 m-0" style="overflow: visible;">
-        <div class="text-center mt-2 mb-2" style="padding:0 15px;">
-            <img v-if="(!vote.param.vote_succ_img || vote.param.follow_open == 1 || vote.param.follow_open == 2) && vote_result.data && vote_result.data.img_url" :src="vote_result.data && vote_result.data.img_url ? vote_result.data.img_url : ''" alt="" style="width:70%;min-height:100px;">
-            <i v-if="!(vote_result.data && vote_result.data.img_url) && vote_result.code==1" class="iconfont icon-success1"
-            style="font-size: 50px;color: #09bb07;"></i>
-            <i v-if="!(vote_result.data && vote_result.data.img_url) && vote_result.code!==1" class="iconfont icon-jieshu"
-            style="font-size: 50px;color:#f67a79;"></i>
-            <h4 :class="'mb-0 tpl-text-' + vote.param.style_color" :style="vote.id == 'n6kqed9jcay6t' ? 'font-size:22px;' : 'font-size: 18px;'">{{vote_result.msg ? (vote.id === '097zf7hghpves' && vote_result.msg == '投票成功' ? '感谢参与' : vote_result.msg ) : '投票结果'}}</h4>
-            <p v-if="is_login && (vote.param.follow_open == 1 || vote.param.follow_open == 2) && vote_result.data && vote_result.data.img_url" style="color: #000;">长按识别图中二维码</p>
-        </div>
-        <button :class="'btn rounded-0 tpl_custom_button tpl-bg-' + vote.param.style_color" @click="clear_layer" style="width:60%;margin:5px auto;">{{vote.id === '4dj9hkubddxow' ? '继续' : '关闭'}}</button>
-        <a :href="vote_result.data.actions.url" target="_blank" :class="'btn tpl_custom_button rounded-0 tpl-bg-' + vote.param.style_color" v-if="vote_result.data && vote_result.data.actions" style="width:60%;margin:5px auto;">
-            {{vote_result.data.actions.btn_name}}
-        </a>
-        <div style="margin:5px 10px 0 10px;" class="qrcode-info" v-show="show_ad">
-            <a href="javascript:;" @click="ad_click" style="display:block;">
-                <img :src="ad_config.ad1_img_url" alt="" class="qrcode-info-img" style="width:100%; border-radius:5px; margin-top: 10px;">
-            </a>
-        </div>
-        <div style="position:relative;margin:5px 10px 0 10px;" class="qrcode-info" v-if="vote.param.vote_succ_img && !show_ad">
-            <a :href="vote.param.vote_img_link ? vote.param.vote_img_link : 'javascript:;'" :target="vote.param.vote_img_link ? '_blank' : '_self'">
-                <img :src="vote.param.vote_succ_img.url" style="max-width:100%; width:100%;max-height: 300px; border-radius:5px; "
-                  @click="previewImage(vote.param.vote_succ_img.url,['0n8a0mqucbpal','8iv18sj0pr5ma'])" />
-            </a>
-            <p style="position: absolute;left: 0;top: 0;color: #fff;background: rgba(0,0,0,.5);padding: 3px 10px 0;font-size: 10px;">广告</p>
-        </div>
-        <div style="width:100%;height:10px;"></div>
-    </div>
-</div>
-
-<!-- 投票验证码 -->
-<div class="widget-dx-captcha" style="width:100%;display: none;">
-</div>
-
-<!-- 分享海报弹窗2 -->
-<div class="widget-share-box" style="width:100%;display: none;">
-    <div class="card border-0 m-0">
-        <div class="poster" v-if="vote && vote_item">
-            <div class="info">
-                <p class="title">{{vote.title}}</p>
-                <p class="date">{{vote.start_time}} - {{vote.end_time}}</p>
-            </div>
-            <div class="cover">
-                <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="">
-            </div>
-            <div class="detail">
-                <p>{{vote_item.index}}号 {{vote.param.text_vote_item_alias}}</p>
-                <p>{{vote_item.title}}</p>
-            </div>
-            <div class="qrcode">
-                <div class="canvas">
-                    <img :src="'//www.weitoupiao.com/index/tools/qrcode?w=300&h=300&text=' + location.href">
-                </div>
-                <p><span>长按图片</span>选择<span>识别图中二维码</span>为我投票吧！</p>
-            </div>
-        </div>
-        <p :class="'mb-0 mt-2 text-center tpl-text-' + vote.param.style_color">长按上方图片保存至手机<br/>可发送给朋友、分享朋友圈拉票</p>
-        <button :class="'mt-2 btn btn-lg rounded-0 tpl-bg-' + vote.param.style_color" @click="clear_layer">关闭</button>
-    </div>
-</div>
-
-<!-- 分享海报2 -->
-<div class="share-box-wrapper" style="width:100%;display:none;">
-    <div class="share-container" v-if="vote && vote_item">
-        <div class="share-wrapper">
-            <h3 class="share-title">{{vote.title}}</h3>
-            <div class="share-img">
-                <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="">
-            </div>
-        </div>
-        <div class="share-description">
-            <div class="share-content">
-                <p class="share_index" :class="vote.param.display_index_vote_item_number ? 'show_index' : ''"><span :style="vote.param.display_index_vote_item_number ? '' : 'height:24px'">{{vote.param.display_index_vote_item_number ? vote_item.index + '号' : ''}}</span></p>
-                <p class="share_participator">{{vote_item.title}}</p>
-            </div>
-        </div>
-        <div class="share-qrcode-box">
-            <div class="share-qrcode-img">
-                <img :src="'//www.weitoupiao.com/index/tools/qrcode?w=300&h=300&text=' + location.href" alt="">
-            </div>
-            <p>长按识别图中二维码帮我投票</p>
-            <div class="share-icon">
-                <img src="//static2.weitoupiao.com/assets/spread/common/img/share-fingermark.png" data-src="//static2.weitoupiao.com/assets/spread/common/img/share-fingermark.png" alt="">
-            </div>
-        </div>
-    </div>
-    <div class="share-close">
-        <i class="iconfont icon-cancel" @click="clear_layer"></i>
-    </div>
-</div>
-
-<div class="share-box-wrapper1" style="width: 100%;display: none;">
-    <div class="share-container1" v-if="vote && vote_item">
-        <div class="share-description1">
-            <div class="share-content1">
-                <p class="share_index1"><span>{{vote_item.index}}号</span></p>
-                <p class="share_title1">{{vote_item.title}}</p>
-            </div>
-        </div>
-        <div class="share-qrcode-box1">
-            <div class="share-qrcode-img1">
-                <img
-                    :src="'//www.weitoupiao.com/index/tools/qrcode?w=300&h=300&text=' + location.href"
-                    alt="">
-            </div>
-            <p>长按识别图中二维码帮我投票</p>
-        </div>
-    </div>
-    <div class="share-close1"><i class="iconfont icon-cancel" @click="clear_layer"></i></div>
-</div>
-
-<div class="share-box-wrapper2" style="width: 100%;display: none;">
-    <div class="share-container2" v-if="vote && vote_item">
-        <div class="share-wrapper2">
-            <div class="share-img2">
-                <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="" />
-            </div>
-        </div> 
-        <div class="share-description2">
-            <div class="share-content2">
-                <p class="share_index2">
-                    <span>{{vote_item.index}}号</span>
-                </p>
-                <p class="share_participator2">{{vote_item.title}}</p>
-            </div>
-        </div> 
-        <div class="share-qrcode-box2">
-            <div class="share-qrcode-img2">
-                <img :src="'//www.weitoupiao.com/index/tools/qrcode?w=300&h=300&text=' + location.href" alt="" />
-            </div>
-            <div class="share-icon2"><img src="" alt=""></div>
-        </div>
-    </div> 
-    <div class="share-close2">
-        <i class="iconfont icon-cancel" @click="clear_layer"></i>
-    </div>
-</div>
-
-<div class="share-box-wrapper3" style="width: 100%;display: none;">
-    <div class="share-container3" v-if="vote && vote_item">
-        <div class="share-wrapper3">
-            <div class="share-img3">
-                <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="">
-            </div>
-        </div> 
-        <div class="share-description3">
-            <div class="share-content3">
-                <p class="share_index3">
-                   {{vote_item.index}}号
-                </p>
-                <p class="share_participator3">{{vote_item.title}}</p>
-            </div>
-        </div>
-        <div class="share-qrcode-box3">
-            <div class="share-qrcode-img3">
-                <img :src="'//www.weitoupiao.com/index/tools/qrcode?w=300&h=300&text=' + location.href" alt="">
-            </div>
-        </div>
-    </div> 
-    <div class="share-close3"><i class="iconfont icon-cancel" @click="clear_layer"></i></div>
-</div>
-
-<div class="share-new-box-wrapper" style="width: 100%;display: none;">
-    <div class="share-new-container" v-if="vote && vote_item">
-        <div class="share-new-wrapper">
-            <h3 class="share-new-title">{{vote.title}}</h3>
-        </div>
-        <div class="share-new-description_wrap">
-            <div class="share-new-description">
-                <div class="share-new-img_wrap">
-                    <div class="share-new-img">
-                        <img
-                           :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="" />
-                    </div>
-                    <div class="share-new-content">
-                        <p class="share-new_index">
-                            <span class="share-new_index_num"> {{vote_item.index}}</span>
-                            <span class="share-new_index_ext">号</span>
-                        </p>
-                        <p class="share-new_participator">{{vote_item.title}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="share-new-qrcode-box">
-            <div class="share-new-qrcode-img">
-                <img
-                    :src="'//www.weitoupiao.com/index/tools/qrcode?w=300&h=300&text=' + location.href"
-                    alt=""></div>
-            <p>长按识别图中二维码帮我{{vote.param.text_vote_btn_name}}</p>
-        </div>
-    </div>
-    <div class="share-new-close"><i class="iconfont icon-cancel" @click="clear_layer"></i></div>
-</div>
-
-<div class="sharing_wrap" v-show="showSharing" @click="showSharing = false">
-    <div class="sharing_text">点击...进行分享</div>
-</div>
-
-<!-- 背景音乐 -->
-<div :class="'widget-audio-box tpl-bg-' + vote.param.style_color" v-if="vote.param.bg_audio">
-    <i class="fa fa-music"></i>
-</div>
-
-<!-- <div class="complaint" style="position: fixed;
-    right: 10px;
-    top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 28px;
-    height: 28px;
-    background: rgb(0,0,0);
-    opacity: 0.4;
-    line-height: 28px;
-    text-align: center;
-    color: #fff;
-    border-radius: 50% !important;
-    z-index: 10;" :style="vote.param.bg_audio ? 'top:52px;' : ''">
-    <a href="/custom?type=complaint" target="_blank" style="color:#fff;font-size: 10px;text-decoration: none;">投诉</a>
-</div> -->
-
-<!-- 评论框 -->
-<div class="widget-comment-box" style="width:100%;display: none;" v-if="vote.param.comment_open">
-    <div class="card border-0 m-0">
-        <div class="text-center">
-            <p class="comment-box-title">写留言</p>
-        </div>
-        <div class="col-12 form-group comment-box-content">
-            <textarea rows="5" class="form-control" placeholder="说点什么吧~" ref="comment_textarea"></textarea>
-        </div>
-        <div class="row m-0 p-0">
-            <div class="col p-0 text-center">
-                <button class="btn btn-close-1" @click="clear_layer">取消</button>
-            </div>
-            <div class="col p-0 text-center">
-                <button class="btn btn-submit-1" :class="'tpl-bg-' + vote.param.style_color" @click="comment_submit">提交</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="share_dialog_wrap" :class="vote.id === 'nr36aqpvzi5e2' ? 'custom-poster' : ''">
-    <div class="share_dialog_container" id="canvas1" v-if="vote_item">
-        <div v-if="vote.id === '98kurmejos00v'" style="position: absolute;left:0;top:0;width:100%;height:100%;z-index:0;">
-            <img :src="vote.param.bg_img.url" style="width:100%;height:100%;" />
-        </div>
-        <div class="share_dialog_banner" v-if="vote.param.vote_banners.length > 0 && /\.weitoupiao\.com/.test(vote.param.vote_banners[0].img_url)"
-            :style="vote.id ==='98kurmejos00v' ? 'background:none;position:relative;z-index:1;' : ''">
-            <img
-                :src="vote.param.vote_banners[0].img_url"
-                alt=""
-            />
-        </div>
-        <div class="share_dialog_content" :style="vote.id ==='98kurmejos00v' ? 'background:none;position:relative;z-index:1;' : ''">
-            <h4 class="share_dialog_title">{{ vote.title }}</h4>
-            <p class="share_dialog_title" v-if="vote.id === 'sqdqcm4g17rzu'">{{ vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0] ? vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0].title : ''}}</p>
-            <div class="share_dialog_item">
-                <div class="share_dialog_item_img">
-                    <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="" />
-                </div>
-                <div class="share_dialog_item_info">
-                    <div class="share_dialog_item_desc" v-if="vote.id !== '2ckuje2i0jjyo'">
-                        <span>编号</span>
-                        <p>{{ vote_item.index }}</p>
-                    </div>
-                    <div :style="vote.id == 'kbvr9uwt55ayz' ? 'display:flex;' : ''">
-                        <div class="share_dialog_item_desc">
-                            <span>{{['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '姓名' : '名称'}}</span>
-                            <p class="share_rule_description">{{ vote_item.title }}</p>
-                        </div>
-                        <div class="share_dialog_item_desc" v-if="vote.id == 'kbvr9uwt55ayz'" style="margin-left:25px;">
-                            <span>选手姓名</span>
-                            <p class="share_rule_description">{{ vote_item.slogan }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="share_dialog_qrcode">
-                <div class="share_dialog_qrcode_text">
-                    <p>长按识别二维码</p>
-                    <a href="javascript:;" class="share_dialog_qrcode_icon"
-                        >{{['6csxc1bgvfeny','e5wpyknyrgyo5'].indexOf(vote.id) > -1 ? '为他点赞' : ['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '为TA点赞' : '为TA投票'}} <i class="iconfont icon-dianji"></i
-                    ></a>
-                </div>
-                <div class="share_dialog_qrcode_img">
-                    <img :src="locationQrcode" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div
-        class="share_dialog_container active"
-        id="canvas2"
-        v-if="vote_item">
-        <div class="share_dialog_banner"  v-if="vote.param.vote_banners.length > 0 && /\.weitoupiao\.com/.test(vote.param.vote_banners[0].img_url)">
-            <img
-                :src="vote.param.vote_banners[0].img_url"
-                alt=""
-            />
-        </div>
-        <div class="share_dialog_content">
-            <h4 class="share_dialog_title">{{ vote.title }}</h4>
-            <p class="share_dialog_title" v-if="vote.id === 'sqdqcm4g17rzu'">{{ vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0] ? vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0].title : ''}}</p>
-            <div class="share_dialog_item">
-                <div class="share_dialog_item_img">
-                    <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="" />
-                </div>
-                <div class="share_dialog_item_info">
-                    <div class="share_dialog_item_desc" v-if="vote.id !== '2ckuje2i0jjyo'">
-                        <span>编号</span>
-                        <p>{{ vote_item.index }}</p>
-                    </div>
-                    <div :style="vote.id == 'kbvr9uwt55ayz' ? 'display:flex;' : ''">
-                        <div class="share_dialog_item_desc">
-                            <span>{{['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '姓名' : '名称'}}</span>
-                            <p class="share_rule_description">{{ vote_item.title }}</p>
-                        </div>
-                        <div class="share_dialog_item_desc" v-if="vote.id == 'kbvr9uwt55ayz'" style="margin-left:25px;">
-                            <span>选手姓名</span>
-                            <p class="share_rule_description">{{ vote_item.slogan }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="share_dialog_qrcode">
-                <div class="share_dialog_qrcode_text">
-                    <p>长按识别二维码</p>
-                    <a href="javascript:;" class="share_dialog_qrcode_icon"
-                        >{{['6csxc1bgvfeny','e5wpyknyrgyo5'].indexOf(vote.id) > -1 ? '为他点赞' : ['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '为TA点赞' : '为TA投票'}} <i class="iconfont icon-dianji"></i
-                    ></a>
-                </div>
-                <div class="share_dialog_qrcode_img">
-                    <img :src="locationQrcode" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="share_dialog_container_3" id="canvas3" v-if="vote_item">
-        <div class="share_dialog_bg">
-            <div class="share_dialog_banner"  v-if="vote.param.vote_banners.length > 0 && /\.weitoupiao\.com/.test(vote.param.vote_banners[0].img_url)">
-                <img
-                    :src="vote.param.vote_banners[0].img_url"
-                    alt=""
-                />
-            </div>
-            <div class="share_dialog_content">
-                <h4 class="share_dialog_title">
-                    {{ vote.title }}
-                </h4>
-                <p class="share_dialog_title" v-if="vote.id === 'sqdqcm4g17rzu'">{{ vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0] ? vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0].title : ''}}</p>
-                <div class="share_dialog_item">
-                    <div class="share_dialog_item_img">
-                        <div class="share_avater">
-                            <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="" />
-                        </div>
-                        <div class="share_dialog_qrcode_icon">
-                            <div class="share_dialog_qrcode_vote">
-                                <img
-                                    src="//static2.weitoupiao.com/assets/spread/common/img/share_icon1.png"
-                                    alt=""
-                                    class="share_dialog_qrcode_icon_left"
-                                />
-                                {{['6csxc1bgvfeny','e5wpyknyrgyo5'].indexOf(vote.id) > -1 ? '为他点赞' : ['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '为TA点赞' : '为TA投票'}}
-                                <img
-                                    src="//static2.weitoupiao.com/assets/spread/common/img/share_icon2.png"
-                                    alt=""
-                                    class="share_dialog_qrcode_icon_right"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="share_dialog_item_info">
-                        <div class="share_dialog_item_desc" v-if="vote.id !== '2ckuje2i0jjyo'">
-                            <span>编号</span>
-                            <div class="info">
-                                <p class="text-ellipsis">
-                                    {{ vote_item.index }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="share_dialog_item_desc">
-                            <span>{{['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '姓名' : '名称'}}</span>
-                            <div class="info">
-                                <p class="share_rule_description">
-                                    {{ vote_item.title }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="share_dialog_qrcode">
-                            <div class="share_dialog_qrcode_text">
-                                <p class="share_text_1">长按识别二维码</p>
-                                <p class="share_text_2">为TA投上宝贵的一票</p>
-                            </div>
-                            <div class="share_dialog_qrcode_img">
-                                <img :src="locationQrcode" alt="" />
-                            </div>
-                        </div>
-                        <div class="share_dialog_for">
-                            <img src="//static2.weitoupiao.com/assets/spread/common/img/share_img.png" alt="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div
-        class="share_dialog_container_3 active"
-        id="canvas4"
-        v-if="vote_item"
-    >
-        <div class="share_dialog_bg" v-if="vote.id === '15np3acrhjrn2'" style="padding:0;">
-            <div class="share_dialog_banner" v-if="vote.param.vote_banners.length > 0 && /\.weitoupiao\.com/.test(vote.param.vote_banners[0].img_url)">
-                <img
-                    :src="vote.param.vote_banners[0].img_url"
-                    alt=""
-                />
-            </div>
-            <div class="share_dialog_content">
-                <div class="share_dialog_item">
-                    <div class="share_dialog_item_img">
-                        <div class="share_avater" style="position: relative;height: 100%;">
-                            <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="" />
-                            <div class="share_avater_call" v-if="vote.id === '15np3acrhjrn2'" style="position: absolute;bottom: 10px;left: 50%;transform: translateX(-50%);width: 94%;">
-                                <img src="https://audio.weitoupiao.com/other/vote/custom/img/poster_call.png" class="share_avater_call_img" style="width:100%;height:auto;" />
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="share_dialog_item_info">
-                        <div class="share_dialog_item_desc">
-                            <span>编号</span> 
-                            <div class="info">
-                                <p class="text-ellipsis" style="font-size: 16px;">
-                                    {{ vote_item.index }}号
-                                </p>
-                            </div>
-                        </div>
-                        <div class="share_dialog_item_desc">
-                            <span>姓名</span> 
-                            <div class="info">
-                                <p class="share_rule_description" style="font-size: 16px;font-weight: 550;">
-                                    {{ vote_item.title }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="share_dialog_qrcode" style="flex-direction: column;padding: 8px;"> 
-                            <div class="share_dialog_qrcode_img" style="width: 86px;height: 86px;">
-                                <img :src="locationQrcode" alt="">
-                            </div>
-                            <div class="share_dialog_qrcode_text" style="margin-top: 5px;">
-                                <p class="share_text_1">长按扫码投票</p> 
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-            </div>
-            <div class="share_dialog_for" style="text-align: center;padding: 10px 0;">
-                <p class="share_text_1" style="color: #fff;">请保存图片后识别二维码进行投票</p>
-            </div>
-        </div>
-        <div class="share_dialog_bg" v-else>
-            <div v-if="vote.id === '98kurmejos00v'" style="position: absolute;left:0;top:0;width:100%;height:100%;z-index:0;">
-                <img :src="vote.param.bg_img.url" style="width:100%;height:100%;" />
-            </div>
-            <div class="share_dialog_banner" v-if="vote.param.vote_banners.length > 0 && /\.weitoupiao\.com/.test(vote.param.vote_banners[0].img_url)"
-                :style="vote.id ==='98kurmejos00v' ? 'background:none;position:relative;z-index:1;' : ''">
-                <img
-                    :src="vote.param.vote_banners[0].img_url"
-                    alt=""
-                />
-            </div>
-            <div class="share_dialog_content" :style="vote.id ==='98kurmejos00v' ? 'background:none;position:relative;z-index:1;' : ''">
-                <h4 class="share_dialog_title" :style="vote.id ==='98kurmejos00v' ? 'background:none;' : ''">
-                    {{ vote.title }}
-                </h4>
-                <p class="share_dialog_title" v-if="vote.id === 'sqdqcm4g17rzu'">{{ vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0] ? vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0].title : ''}}</p>
-                <div class="share_dialog_item">
-                    <div class="share_dialog_item_img">
-                        <div class="share_avater">
-                            <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="" />
-                        </div>
-                        <div class="share_dialog_qrcode_icon" :style="vote.id ==='98kurmejos00v' ? 'background:none;' : ''">
-                            <div class="share_dialog_qrcode_vote">
-                                <img
-                                    src="//static2.weitoupiao.com/assets/spread/common/img/share_icon1.png"
-                                    alt=""
-                                    class="share_dialog_qrcode_icon_left"
-                                />
-                                {{['6csxc1bgvfeny','e5wpyknyrgyo5'].indexOf(vote.id) > -1 ? '为他点赞' : ['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '为TA点赞' : '为TA投票'}}
-                                <img
-                                    src="//static2.weitoupiao.com/assets/spread/common/img/share_icon2.png"
-                                    alt=""
-                                    class="share_dialog_qrcode_icon_right"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="share_dialog_item_info">
-                        <div class="share_dialog_item_desc" v-if="vote.id !== '2ckuje2i0jjyo'">
-                            <span>编号</span>
-                            <div class="info" :style="vote.id ==='98kurmejos00v' ? 'background:none;' : ''">
-                                <p class="text-ellipsis">
-                                    {{ vote_item.index }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="share_dialog_item_desc">
-                            <span>{{['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '姓名' : '名称'}}</span>
-                            <div class="info"  :style="vote.id ==='98kurmejos00v' ? 'background:none;' : ''">
-                                <p class="share_rule_description">
-                                    {{ vote_item.title }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="share_dialog_qrcode" :style="vote.id ==='98kurmejos00v' ? 'background:none;' : ''">
-                            <div class="share_dialog_qrcode_text">
-                                <p class="share_text_1">长按识别二维码</p>
-                                <p class="share_text_2">为TA投上宝贵的一票</p>
-                            </div>
-                            <div class="share_dialog_qrcode_img">
-                                <img :src="locationQrcode" alt="" />
-                            </div>
-                        </div>
-                        <div class="share_dialog_for" v-if="vote.id !== '98kurmejos00v'">
-                            <img src="//static2.weitoupiao.com/assets/spread/common/img/share_vote_img.png" alt="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="share_dialog_container_4" id="canvas5" v-if="vote_item">
-        <div class="share_dialog_bg">
-            <div class="share_dialog_banner" v-if="vote.param.vote_banners.length > 0 && /\.weitoupiao\.com/.test(vote.param.vote_banners[0].img_url)">
-                <img
-                    :src="vote.param.vote_banners[0].img_url"
-                    alt=""
-                />
-            </div>
-            <div class="share_dialog_content">
-                <h4 class="share_dialog_title">
-                    {{ vote.title }}
-                </h4>
-                <p class="share_dialog_title" v-if="vote.id === 'sqdqcm4g17rzu'">{{ vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0] ? vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0].title : ''}}</p>
-                <div class="share_dialog_item">
-                    <div class="share_dialog_item_img">
-                        <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="" />
-                    </div>
-                    <div class="share_dialog_item_info">
-                        <div class="share_dialog_item_desc" v-if="vote.id !== '2ckuje2i0jjyo'">
-                            <span>编号</span>
-                            <div class="info">
-                                <p class="text-ellipsis">
-                                    {{ vote_item.index }}
-                                </p>
-                            </div>
-                        </div>
-                        <div :style="vote.id =='kbvr9uwt55ayz' ? 'display:flex;' : ''">
-                            <div class="share_dialog_item_desc">
-                                <span>{{['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '姓名' : '名称'}}</span>
-                                <div class="info">
-                                    <p class="share_rule_description">
-                                        {{ vote_item.title }}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="share_dialog_item_desc" v-if="vote.id == 'kbvr9uwt55ayz'" style="margin-left:25px;">
-                                <span>选手姓名</span>
-                                <div class="info">
-                                    <p class="share_rule_description">
-                                        {{ vote_item.slogan }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="share_dialog_qrcode">
-                    <div class="share_dialog_qrcode_img">
-                        <img :src="locationQrcode" alt="" />
-                    </div>
-                    <div class="share_dialog_qrcode_text">
-                        <p class="share_text_1">长按识别二维码</p>
-                        <p class="share_text_2">
-                            {{['6csxc1bgvfeny','e5wpyknyrgyo5'].indexOf(vote.id) > -1 ? '为他点赞' : ['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '为TA点赞' : '为TA投票'}} <i class="iconfont icon-dianji"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="share_dialog_container_5" id="canvas6" v-if="vote_item">
-        <div class="share_dialog_bg">
-            <div
-                class="share_dialog_banner"
-                v-if="vote.param.vote_banners.length > 0 && /\.weitoupiao\.com/.test(vote.param.vote_banners[0].img_url)"
-            >
-                <img :src="vote.param.vote_banners[0].img_url" alt="" />
-            </div>
-            <div class="share_dialog_content">
-                <div class="share_dialog_content_info">
-                    <div class="share_dialog_item_wrap">
-                        <h4 class="share_dialog_title">
-                            {{ vote.title }}
-                        </h4>
-                        <p class="share_dialog_title" v-if="vote.id === 'sqdqcm4g17rzu'">{{ vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0] ? vote_item_types.filter(val => vote_item && val.id === vote_item.vote_item_type_id)[0].title : ''}}</p>
-                        <div class="share_dialog_item">
-                            <div class="share_dialog_item_img">
-                                <img :src="vote_item.cover_url ? vote_item.cover_url : '//static2.weitoupiao.com/assets/common/img/vote-item-cover-empty.png'" alt="" />
-                            </div>
-                            <div class="share_dialog_item_info">
-                                <div class="share_dialog_item_desc" v-if="vote.id !== '2ckuje2i0jjyo'">
-                                    <span>编号</span>
-                                    <div class="info">
-                                        <p class="text-ellipsis">
-                                            {{ vote_item.index }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="share_dialog_item_desc">
-                                    <span>{{['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '姓名' : '名称'}}</span>
-                                    <div class="info">
-                                        <p class="share_rule_description">
-                                            {{ vote_item.title }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="share_dialog_qrcode">
-                        <div class="share_dialog_qrcode_text">
-                            <p class="share_text">
-                                <span>长按识别二维码</span>
-                                <span class="share_text_txt">{{['6csxc1bgvfeny','e5wpyknyrgyo5'].indexOf(vote.id) > -1 ? '为他点赞' : ['npy4pww7y8n5d','b787l4z0klytu'].indexOf(vote.id) > -1 ? '为TA点赞' : '为TA投票'}}</span>
-                                <img
-                                    src="//static2.weitoupiao.com/assets/spread/common/img/share_icon2.png"
-                                    alt=""
-                                    class="share_dialog_qrcode_icon"
-                                />
-                            </p>
-                        </div>
-                        <div class="share_dialog_qrcode_img">
-                            <img :src="locationQrcode" alt="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="share_box" style="display:none;">
-        <div class="swiper-container swiper_share" v-if="shareVoteItemImgs.length > 0">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="(item, index) in shareVoteItemImgs" :key="index">
-                    <img :src="item">
-                </div>
-            </div>
-            <div class="swiper-pagination swiper_share_pagination"></div>
-        </div>
-        <div class="share_box_close">
-            <p>左右滑动切换,长按图片保存</p>
-            <i
-                class="iconfont icon-cancel"
-                @click="clear_layer"
-            ></i>
-        </div>
-    </div>
-</div>
-
-<div class="bg_share_wrap" v-if="vote_item && !vote.param.bg_img"></div>  
-        </div>
-
-		<script>
-    var page_data = {
-        vote: {"id":"j016bt107vl4y","title":"咸丰县第三届“电信杯”青少年歌手大赛（少儿组）“最佳人气奖”网络评选","describe":"","vote_count":52908,"read_count":18173,"vote_item_count":15,"vote_items_examine_count":15,"status":1,"start_time":"2025-06-03 08:00:00","end_time":"2025-06-15 20:00:00","create_time":"2025-05-27 11:33:57","status_text":"进行中","cover_img_url":"https:\/\/cdn.weitoupiao.com\/image\/2\/Fn45w1EzQeFcDyt8re7SHS2WFYMS\/td3dr4xhq5y72lbb.jpg?topbanner.jpg","link":"https:\/\/j016bt107vl4y.v.jisutp.com","content":"","param":{"rule_type":1,"rule_times":10,"rule_item_times":10,"rule_min":1,"rule_max":2,"rule_everyday":1,"vote_steps":[],"next_vote_limit_second":0,"rule_text":"每个微信号每天可以投票10次，每天可为同一选手投票10次","rule_custom_text":null,"style_tpl":27,"style_color":1,"page_float":null,"page_banner_auto":1,"page_banner_second":5,"page_banner_effect":"slide","page_banner_pagination":1,"page_ad_close":1,"page_ad_second":5,"page_ad_show_times":0,"page_ad_show_minute":30,"page_vote_item_type_column":2,"page_vote_item_load_type":1,"text_notice":null,"text_copyright":null,"text_vote_item_alias":"选手","text_vote_btn_name":"投票","text_vote_unit":"票","display_copyright":1,"display_index_banner":1,"display_index_title":0,"display_index_data":1,"display_index_rule":1,"display_index_vote_item_type":1,"display_index_vote_item_type_all_button":1,"display_index_search":1,"display_index_vote_item_number":1,"display_index_vote_item_cover":1,"display_index_vote_item_name":1,"display_index_vote_item_slogan":1,"display_index_vote_count":1,"display_index_vote_item_button":1,"display_index_vote_item_detail":1,"display_index_content_show":1,"display_index_column":2,"display_index_sort":6,"display_index_show_type":1,"display_content_banner":1,"display_content_title":1,"display_content_data":1,"display_content_rule":1,"display_detail_banner":1,"display_detail_vote_item_data":1,"display_detail_vote_item_number":1,"display_detail_vote_item_slogan":1,"display_detail_vote_item_cover":1,"display_detail_vote_item_name":1,"display_detail_vote_data":1,"display_detail_poster_button":1,"display_detail_back_button":1,"display_detail_img_swp":0,"display_sign_banner":1,"display_sign_title":1,"display_sign_data":1,"display_sign_rule":1,"display_rank_banner":1,"display_rank_title":1,"display_rank_data":1,"display_rank_rule":1,"display_rank_vote_item_type":1,"display_rank_vote_item_type_all_button":1,"display_rank_vote_item_cover":1,"display_rank_show":1,"display_navbar_home":1,"display_navbar_content":1,"display_navbar_sign":1,"display_navbar_search":1,"display_navbar_rank":1,"display_navbar_self":0,"display_navbar_self_name":null,"display_navbar_self_link":null,"display_navbar_self2":0,"display_navbar_self_name2":null,"display_navbar_self_link2":null,"display_vote_item_count":0,"display_vote_count":0,"display_read_count":0,"share_open":1,"share_title":"{\n    活动标题}","share_desc":"{\n    活动简介}","share_img":{"id":2624067,"url":"https:\/\/cdn.weitoupiao.com\/image\/9\/FtikG7DqDXQQ9Gcjvo3tsTAcUfFk\/ahju558y5w12j89o.jpg\/small","thumb":"https:\/\/cdn.weitoupiao.com\/image\/9\/FtikG7DqDXQQ9Gcjvo3tsTAcUfFk\/ahju558y5w12j89o.jpg\/thumb"},"share_vote_item_title":"我是{\n    选手编号}号，{\n    选手标题}，正在参加《{\n    活动标题}》","share_vote_item_desc":"{\n    活动简介}","captcha":0,"block_max_day":0,"block_max_hour":0,"block_warning_notice":0,"block_warning_val":100,"block_level":2,"block_address":null,"block_ip":null,"block_time":0,"block_time_start":"06:00:00","block_time_end":"23:00:00","auth_type":1,"follow_open":0,"follow_keyword":null,"gift_open":0,"gift_show_detail":1,"comment_open":0,"comment_barrage":0,"live_open":0,"display_live_column":6,"sign_open":0,"sign_video_open":0,"sign_video_name":"视频","sign_multiple":0,"sign_upload_name":"图片","sign_upload_count_min":1,"sign_upload_count_max":1,"sign_notice_wx":0,"open_vote_jump":0,"vote_jump_link":"http:\/\/","vote_jump_msg":"{1}成功，页面跳转中……","vote_jump_second":3,"private_open":0,"develop_open":0,"vaf_open":0,"sign_form":{"title":{"not_del":true,"not_edit_show":true,"not_edit_validate":true,"validate":0,"config":null,"name":"标题","show":2},"slogan":{"not_del":true,"not_edit_validate":true,"validate":0,"config":null,"name":"副标题","show":1},"content":{"not_del":true,"not_edit_validate":true,"validate":0,"config":null,"name":"描述","show":1,"textarea":true}},"bg_img":null,"page_ad_img":null,"page_ad_img_link":"","vote_succ_img":null,"vote_err_img":null,"vote_img_link":"","bg_img_attachment":"fixed","bg_img_size":"auto","vote_item_type_name":"分组","style_color_custom":"","bg_audio":{"id":18,"title":"learning to fly","url":"https:\/\/audio.weitoupiao.com\/2018\/learning_to_fly.mp3","thumb":"https:\/\/audio.weitoupiao.com\/2018\/learning_to_fly.mp3"},"diff_type":"结束","diff_time":847323,"vote_rule":{"rule_type":1,"rule_everyday":1,"rule_times":10,"rule_item_times":10,"rule_min":1,"rule_max":2,"private_open":0,"rule_limit":0},"vote_banners":[{"id":97573,"link":"","img_url":"https:\/\/cdn.weitoupiao.com\/image\/2\/Fn45w1EzQeFcDyt8re7SHS2WFYMS\/td3dr4xhq5y72lbb.jpg?topbanner.jpg","thumb_url":"https:\/\/cdn.weitoupiao.com\/image\/2\/Fn45w1EzQeFcDyt8re7SHS2WFYMS\/td3dr4xhq5y72lbb.jpg?topbanner.jpg"}]},"share_wx_count":221,"share_sns_count":119,"intercept_vote_count":0,"read_count_tl":0,"read_count_sm":0,"read_count_gm":0},
-        vote_item: null,
-        vote_items: {
-            data: [],
-            page: 1,
-            done: false,
-            keyword: '',
-            vote_item_type_id: 0,
-            running: false,
-            masonry: null,
-            scroll_bottom:1100,
-            page_total:0,
-            size:10
-        },
-        searchItems: {
-            data: [],
-            page: 1,
-            done: false,
-            keyword: '',
-            vote_item_type_id: 0,
-            running: false,
-            masonry: null,
-            scroll_bottom:1100,
-            page_total:0,
-            size:10
-        },
-        sign_vote_items: [],
-        vote_item_comments: [],
-        check_vote_item_ids: [],
-        vote_item_types: [],
-        error_msg: '',
-        current_page: 'index',
-        api: {
-            get_vote_item: 'getVoteItem',
-            get_vote_items: 'getVoteItems',
-            get_sign_vote_items: 'getSignVoteItems',
-            get_vote_item_types: 'getVoteItemTypes',
-            get_vote_item_comments: 'getComments',
-            comment_like: 'commentLike',
-            send_vote: 'sendVote2',
-            send_comment: 'sendComment',
-            index: 'index',
-            detail: 'detail?iid=',
-            content: 'content',
-            sign: 'sign',
-            rank: 'rank',
-            post_sign: 'sendSign',
-            share: 'shareSuccess',
-            ad_statistics: 'adStatistics',
-            captcha_src: 'verifyCode',
-            upload_sign_param: '',
-            example_link: 'https://www.weitoupiao.com/example/j016bt107vl4y.html' + '?alllink=' + document.location.pathname + document.location.search,
-            create_share_img: 'createShareImg',
-            upload_token:'https://api.weitoupiao.com/upload/uploadToken',
-            test: 'https://api.weitoupiao.com/upload/uploadToken',
-            save_guest_info:"saveGuestInfo?type=2",
-        },
-        elements: {
-            vote_item_box: '.vote-item-box',
-            vote_item: '.vote-item',
-            bg_audio: '.widget-audio-box',
-            count_down_box: '.count-down-box',
-            marquee: '.marquee',
-        },
-        wx_js_config: {},
-        vote_result: {
-            code: 0, msg: '', data: { actions : null },
-        },
-        create_share_img_result: {
-            code: 0, msg: '', data: {
-                img_url: null,
-            },
-        },
-        send_vote_request: {
-            id: '',
-            captcha: '',
-            network: '',
-            dx_token: '',
-            dx_captcha_token: '',
-            hx_info: null,
-        },
-        sign_uploads: [],
-        is_login: 0,
-        app_debug: 0,
-        ad_config: {"show":true,"ad1_img_url":"","ad1_link":""},
-        show_ad: false,// 是否展示广告
-        ad_url2:'',
-        ad_img2:'https://static2.weitoupiao.com/assets/common/img/20-40.jpg',
-        commentArr:[],
-        showSharing:false,
-        ad_url3:"",
-        ad_img3:"https://static2.weitoupiao.com/assets/common/img/20-40.jpg",
-        ad_url4:"",
-        ad_img4:"",
-        locationQrcode:"",
-        shareVoteItemImgs:[],
-        shareVoteItemImg:"",
-        searchVisible:false,
-        onloadFirstImg:true,
-        head_img_url:"https://static2.weitoupiao.com/assets/spread/common/img/headimg.png",
-        jump_link:"",
-        hasVoteItemIds:[],
-        customTypeScroll:false,
-        check_vote_items:[],
-        showCheckVoteItem:false,
-        showRankType:false,
-        showSearchResult:false,
-        firstLoad:true,
-        firstScroll:true,
-        showVoteContent:false,
-        sign_custom_uploads:[],
-        selectSignTypeId:'',
-        queryType:"",
-        vote_item_comments_data: {
-            page: 1,
-            done: false,
-            running: false,
-            size: 30,
-            comment_content:"",
-            isFirstLoad:false
-        },
-        signItem:null,
-        custom_video_url:"https://www.bilibili.com/video/BV1Eb421B7CQ/?vd_source=4ea0d22263e5fbe8613db479a4feb047",
-        custom_vote_form:{
-            department:[
-                {
-                    name:"招标中心领导班子成员",
-                    value:1,
-                },
-                {
-                    name:"招标中心办公室",
-                    value:2,
-                },
-                {
-                    name:"招标中心党群工作处",
-                    value:3,
-                },
-                 {
-                    name:"招标中心人事处",
-                    value:4,
-                },
-                {
-                    name:"招标中心纪律检查处",
-                    value:5,
-                },
-                {
-                    name:"招标中心财务处",
-                    value:6,
-                },
-                {
-                    name:"招标中心信息化处",
-                    value:7,
-                },
-                {
-                    name:"招标中心规划处",
-                    value:8,
-                },
-                {
-                    name:"招标中心政府采购处",
-                    value:9,
-                },
-                {
-                    name:"招标中心项目管理一处",
-                    value:10,
-                },
-                {
-                    name:"招标中心项目管理二处",
-                    value:11,
-                },
-                {
-                    name:"招标中心政策研究处",
-                    value:12,
-                },
-                {
-                    name:"招标中心数据管理处",
-                    value:13,
-                },
-                {
-                    name:"招标中心绿色工业发展服务处",
-                    value:14,
-                },
-                {
-                    name:"招标中心产业链供应链服务处",
-                    value:15,
-                },
-                {
-                    name:"招标中心企业服务处",
-                    value:16,
-                },
-                {
-                    name:"招标中心条件保障处",
-                    value:17,
-                },
-                {
-                    name:"招标中心离退休干部",
-                    value:18,
-                },
-                {
-                    name:"《中国招标》期刊有限公司",
-                    value:19,
-                },
-                {
-                    name:"中招国际招标有限公司",
-                    value:20,
-                },
-                {
-                    name:"中招国际会展(北京)有限公司",
-                    value:21,
-                }
-            ],
-            partyBranch:[{
-                    name:"招标中心第一党支部",
-                    value:1,
-                },
-                {
-                    name:"招标中心第二党支部",
-                    value:2,
-                },
-                {
-                    name:"招标中心第三党支部",
-                    value:3,
-                },
-                 {
-                    name:"招标中心第四党支部",
-                    value:4,
-                },
-                {
-                    name:"招标中心第五党支部",
-                    value:5,
-                },
-                {
-                    name:"招标中心第六党支部",
-                    value:6,
-                },
-                {
-                    name:"招标中心第七党支部",
-                    value:7,
-                },
-                {
-                    name:"招标中心第八党支部",
-                    value:8,
-                },
-                {
-                    name:"招标中心第九党支部",
-                    value:9,
-                },
-                {
-                    name:"招标中心第十党支部",
-                    value:10,
-                },
-                {
-                    name:"招标中心离退休干部党支部",
-                    value:11,
-                },
-                {
-                    name:"《中国招标》期刊有限公司党支部",
-                    value:12,
-                },
-                {
-                    name:"中招国际招标有限公司党委",
-                    value:13,
-                },
-                {
-                    name:"中招国际会展(北京)有限公司党支部",
-                    value:14,
-                }
-            ]
-        },
-        vote_helper:{
-            field1:'',
-            field2:'',
-        },
-        customDetailTypes:['nr36aqpvzi5e2', 'sqdqcm4g17rzu', 'lzn6i3uitcdav', 'l06ehabfmg1v2','gshkw9b8qaj34','2wl8n1iypk2e6']
-    };
-</script>
-
-    
-    <!-- 新版投票模板js -->
-    
-    <script src="//static2.weitoupiao.com/assets/spread/common/js/spread.vote-new.js?v=1.0679" crossorigin="anonymous"></script>
-
-<div style="display: none;">    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?b3812239371086612a1c6186f8c74c39";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-</div>
-
-<script>
-    var regHttpUrl = /^http:/
-    if(regHttpUrl.test(page_data.api.upload_token)){
-        page_data.api.upload_token=page_data.api.upload_token.replace(
-            regHttpUrl,
-            "https:"
-        )
-    }
-</script>
-
-<script>
-    var isWX = navigator.userAgent.indexOf('MicroMessenger') > -1;
-    var objHistory ={
-        show_history: page_data.ad_config.show,
-    }
-    function pushHistory() {
-        console.log(history.length)
-        if (history.length <= 2) {
-            var state = {
-                title: '微信投票评选系统',
-                page: 'download',
-                url: '/custom?type=back_ad',
-            };
-            var url = location.href;
-            window.history.replaceState(state, null, state.url);
-            window.history.pushState({ page: 'detail' }, null, url)
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的朋友们 | 照片展示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        console.log(history.length)
-    }
-    if (isWX) {
-                    if(objHistory.show_history){
-                // pushHistory();
-                // window.addEventListener('popstate', function (e) {
-                //   var temp = e.state;
-                //   if (temp && "download" === temp.page) {
-                //       location.reload();
-                //    }
-                // })
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1920') center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+
+        header h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 2px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
+        }
+
+        .upload-btn i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 10px;
+        }
+
+        .friend-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            height: 350px;
+        }
+
+        .friend-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .photo-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .friend-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .friend-card:hover .friend-photo {
+            transform: scale(1.1);
+        }
+
+        .friend-info {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .friend-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+
+        .friend-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .empty-state i {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-state p {
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
             }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
+        }
 
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .friend-card {
+                height: 300px;
+            }
+            
+            .photo-container {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-user-friends"></i> 我的朋友们</h1>
+            <p class="tagline">记录我们一起度过的美好时光！上传朋友照片，创建属于你们的珍贵回忆集。</p>
+        </header>
+        
+        <div class="controls">
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                <i class="fas fa-cloud-upload-alt"></i> 上传朋友照片
+            </button>
+            <input type="file" id="fileInput" accept="image/*" style="display: none;">
+        </div>
+        
+        <div class="gallery">
+            <div class="friend-card">
+                <div class="photo-container">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                         alt="李明" class="friend-photo">
+                    <div class="date">2023-05-15</div>
+                </div>
+                <div class="friend-info">
+                    <h3>李明</h3>
+                    <p>大学室友，篮球高手，最好的兄弟！我们一起走过了十年时光。</p>
+                </div>
+            </div>
+            
+            <div class="friend-card">
+                <div class="photo-container">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                         alt="张小雨" class="friend-photo">
+                    <div class="date">2023-06-22</div>
+                </div>
+                <div class="friend-info">
+                    <h3>张小雨</h3>
+                    <p>高中同桌，旅行达人。去年一起去了西藏，留下了难忘的回忆。</p>
+                </div>
+            </div>
+            
+            <div class="friend-card">
+                <div class="photo-container">
+                    <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0e16019?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                         alt="王浩" class="friend-photo">
+                    <div class="date">2023-04-10</div>
+                </div>
+                <div class="friend-info">
+                    <h3>王浩</h3>
+                    <p>同事兼好友，摄影爱好者。这张照片是他在海边帮我拍的。</p>
+                </div>
+            </div>
+            
+            <div class="friend-card">
+                <div class="photo-container">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                         alt="陈思思" class="friend-photo">
+                    <div class="date">2023-07-30</div>
+                </div>
+                <div class="friend-info">
+                    <h3>陈思思</h3>
+                    <p>大学同学，美食家。我们每个月都会尝试不同的餐厅。</p>
+                </div>
+            </div>
+            
+            <div class="friend-card">
+                <div class="photo-container">
+                    <img src="https://images.unsplash.com/photo-1508341591423-4347099e1f19?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                         alt="赵峰" class="friend-photo">
+                    <div class="date">2023-03-18</div>
+                </div>
+                <div class="friend-info">
+                    <h3>赵峰</h3>
+                    <p>健身伙伴，我们一起坚持健身已经两年了！互相鼓励，共同进步。</p>
+                </div>
+            </div>
+            
+            <div class="friend-card">
+                <div class="photo-container">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                         alt="刘婷" class="friend-photo">
+                    <div class="date">2023-08-12</div>
+                </div>
+                <div class="friend-info">
+                    <h3>刘婷</h3>
+                    <p>读书会认识的朋友，我们经常交换书籍，分享阅读心得。</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 我的朋友们照片集 | 用照片记录珍贵的友谊</p>
+        </footer>
+    </div>
 
-    // if(!objHistory.show_history){
-    //    window.addEventListener('popstate', function (e) {
-    //        location.reload();
-    //    })
-    // }
-
-    
-    window.addEventListener('popstate', function (e) {
-        location.reload();
-    })
-  
-
-    if(page_data.ad_config.show){
-        var _hmt = _hmt || [];
-        (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?efd7206965a3d431615d576ad3e41077";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
-        })();
-    }
-
-</script>
-<div style="display: none;">
-    <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1279916648&web_id=1279916648"></script>
-</div>
-	</section>
-
-	</body>
+    <script>
+        // 文件上传功能
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const fileName = prompt("请输入朋友姓名：", "朋友姓名");
+                    if (fileName) {
+                        const friendDesc = prompt("请输入朋友描述：", "我的好朋友");
+                        addFriendCard(event.target.result, fileName, friendDesc);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // 添加新朋友卡片
+        function addFriendCard(photoSrc, name, description) {
+            const gallery = document.querySelector('.gallery');
+            
+            const newCard = document.createElement('div');
+            newCard.className = 'friend-card';
+            
+            // 获取当前日期
+            const today = new Date();
+            const dateStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            
+            newCard.innerHTML = `
+                <div class="photo-container">
+                    <img src="${photoSrc}" alt="${name}" class="friend-photo">
+                    <div class="date">${dateStr}</div>
+                </div>
+                <div class="friend-info">
+                    <h3>${name}</h3>
+                    <p>${description}</p>
+                </div>
+            `;
+            
+            gallery.insertBefore(newCard, gallery.firstChild);
+            
+            // 显示添加成功的消息
+            alert(`成功添加 ${name} 的照片！`);
+        }
+    </script>
+</body>
 </html>
